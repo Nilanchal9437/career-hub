@@ -1,0 +1,118 @@
+"use client";
+import { useState } from "react";
+
+const universities = [
+  {
+    id: 1,
+    name: "Mohammed V University",
+    courses: [
+      { id: 1, name: "Computer Science" },
+      { id: 2, name: "Business Administration" },
+      { id: 3, name: "Civil Engineering" },
+    ],
+  },
+  {
+    id: 2,
+    name: "Cadi Ayyad University",
+    courses: [
+      { id: 4, name: "Mathematics" },
+      { id: 5, name: "Physics" },
+    ],
+  },
+  {
+    id: 3,
+    name: "Hassan II University",
+    courses: [
+      { id: 6, name: "Law" },
+      { id: 7, name: "Medicine" },
+    ],
+  },
+];
+
+function IconCap() {
+  return (
+    <svg className="w-8 h-8 md:w-10 md:h-10 text-yellow-500 mr-2 inline-block align-middle" fill="none" viewBox="0 0 24 24"><path d="M12 3L2 8l10 5 10-5-10-5z" fill="#FACC15"/><path d="M2 8v2c0 5.523 4.477 10 10 10s10-4.477 10-10V8" stroke="#FACC15" strokeWidth="2"/><path d="M6 17.5V12.5" stroke="#FACC15" strokeWidth="2" strokeLinecap="round"/></svg>
+  );
+}
+function IconButtonCap() {
+  return (
+    <svg className="w-5 h-5 text-white mr-2 inline-block align-middle" fill="none" viewBox="0 0 24 24"><path d="M12 3L2 8l10 5 10-5-10-5z" fill="#fff"/><path d="M2 8v2c0 5.523 4.477 10 10 10s10-4.477 10-10V8" stroke="#fff" strokeWidth="2"/><path d="M6 17.5V12.5" stroke="#fff" strokeWidth="2" strokeLinecap="round"/></svg>
+  );
+}
+
+function CareerGuidance() {
+  const [selectedUniversity, setSelectedUniversity] = useState("");
+  const [selectedCourse, setSelectedCourse] = useState("");
+
+  const universityOptions = universities.map((u) => ({ value: u.id, label: u.name }));
+  const courseOptions =
+    universities.find((u) => String(u.id) === selectedUniversity)?.courses.map((c) => ({ value: c.id, label: c.name })) || [];
+
+  return (
+    <div className="bg-[#f8fafc] min-h-screen w-full py-0 md:py-10 flex flex-col items-center">
+      {/* Hero Section */}
+      <div className="w-full max-w-3xl mx-auto text-center mt-10 md:mt-16 px-4">
+        <h1 className="font-extrabold text-2xl md:text-4xl text-gray-900 mb-3 flex items-center justify-center gap-2">
+          <IconCap />
+          <span>Improve Your Skills & Get Career Guidance</span>
+        </h1>
+        <p className="text-gray-500 text-base md:text-lg mb-8">
+          Choose your career path and see the essential skills, jobs, and expert guidance to grow fast — no login needed.
+        </p>
+      </div>
+
+      {/* Form Card */}
+      <div className="w-full max-w-2xl bg-white rounded-xl shadow p-6 md:p-8 mx-auto mb-8 flex flex-col gap-6">
+        {/* University Select */}
+        <div>
+          <label className="block font-semibold text-gray-800 mb-1">Select University</label>
+          <select
+            className="w-full border border-gray-200 rounded-md px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-green-200 mb-1"
+            value={selectedUniversity}
+            onChange={(e) => {
+              setSelectedUniversity(e.target.value);
+              setSelectedCourse("");
+            }}
+          >
+            <option value="">Choose your university</option>
+            {universityOptions.map((u) => (
+              <option key={u.value} value={u.value}>{u.label}</option>
+            ))}
+          </select>
+          <div className="text-gray-400 text-sm ml-1">Select the university</div>
+        </div>
+        {/* Course Select */}
+        <div>
+          <label className="block font-semibold text-gray-800 mb-1">Select Course</label>
+          <select
+            className="w-full border border-gray-200 rounded-md px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-green-200 mb-1"
+            value={selectedCourse}
+            onChange={(e) => setSelectedCourse(e.target.value)}
+            disabled={!selectedUniversity}
+          >
+            <option value="">Choose your course</option>
+            {courseOptions.map((c) => (
+              <option key={c.value} value={c.value}>{c.label}</option>
+            ))}
+          </select>
+          <div className="text-gray-400 text-sm ml-1">Select the course</div>
+        </div>
+      </div>
+
+      {/* Start Button */}
+      <div className="w-full flex justify-center">
+        <button
+          className="bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-3 rounded-md text-base flex items-center gap-2 transition shadow"
+          disabled={!selectedUniversity || !selectedCourse}
+        >
+          <IconButtonCap />
+          Start Your Journey
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default function Page() {
+  return <CareerGuidance />;
+}
