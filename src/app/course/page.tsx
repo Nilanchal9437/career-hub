@@ -5,104 +5,323 @@ import { useState } from "react";
 const universities = [
   {
     id: 1,
-    name: "Mohammed V University",
-    city: "Rabat",
-    avatar: "M",
-    color: "bg-violet-100 text-violet-600",
+    name: "Faculté des Sciences",
+    city: "Unknown",
+    avatar: "F",
+    color: "bg-blue-100 text-blue-600",
     courses: [
       {
         id: 1,
-        name: "Computer Science",
-        faculty: "Faculty of Sciences",
-        type: ["4-Year Program", "Bachelor's Degree"],
-        description:
-          "The Computer Science program at Mohammed V University provides students with a comprehensive foundation in computing principles, programming languages, algorithms, and software development. The curriculum combines theoretical knowledge with practical applications to prepare students for careers in the technology sector.",
+        name: "Informatique / Data Science",
+        faculty: "Faculté des Sciences",
+        type: ["Master"],
+        description: "IA, Vision, Sécurité, Cloud, Big Data",
         skills: [
-          "Programming",
-          "Algorithms",
-          "Data Structures",
-          "Database Design",
-          "Web Development",
-          "Software Engineering",
-          "Operating Systems",
-          "Networking",
+          "Modèles IA",
+          "visualisation",
+          "data science",
+          "backend API"
         ],
+        technologies: [
+          "Python",
+          "Keras",
+          "OpenCV",
+          "Spark",
+          "Hadoop",
+          "Flask"
+        ]
       },
       {
         id: 2,
-        name: "Business Administration",
-        faculty: "Faculty of Economics",
-        type: [],
-        description: "Business Administration program details...",
-        skills: ["Management", "Finance", "Marketing"],
-      },
-      {
-        id: 3,
-        name: "Civil Engineering",
-        faculty: "School of Engineering",
-        type: [],
-        description: "Civil Engineering program details...",
-        skills: ["Structures", "Materials", "Project Management"],
-      },
-      {
-        id: 4,
-        name: "Medicine",
-        faculty: "Faculty of Medicine",
-        type: [],
-        description: "Medicine program details...",
-        skills: ["Anatomy", "Physiology", "Clinical Skills"],
-      },
-      {
-        id: 5,
-        name: "Law",
-        faculty: "Faculty of Law",
-        type: [],
-        description: "Law program details...",
-        skills: ["Legal Research", "Contracts", "Advocacy"],
-      },
+        name: "Informatique",
+        faculty: "Faculté des Sciences",
+        type: ["Licence"],
+        description: "Algorithmique, Programmation, BD, Réseaux, Compilation",
+        skills: [
+          "Bases théoriques",
+          "programmation",
+          "conception logicielle"
+        ],
+        technologies: [
+          "C",
+          "Java",
+          "Python",
+          "SQL",
+          "Linux"
+        ]
+      }
     ],
   },
   {
     id: 2,
-    name: "Cadi Ayyad University",
-    city: "Marrakech",
-    avatar: "C",
-    color: "bg-purple-100 text-purple-600",
-    courses: [],
+    name: "ENSA",
+    city: "Unknown",
+    avatar: "E",
+    color: "bg-green-100 text-green-600",
+    courses: [
+      {
+        id: 1,
+        name: "Génie Informatique",
+        faculty: "ENSA",
+        type: ["Licence/Ingénieur"],
+        description: "POO, Bases de données, Réseaux, Web, Mobile, UML, Cloud, Sécurité",
+        skills: [
+          "Développement complet",
+          "sécurité",
+          "gestion projet",
+          "dev web/mobile"
+        ],
+        technologies: [
+          "Java",
+          "Python",
+          "MySQL",
+          "PHP",
+          "HTML/CSS",
+          "Android Studio",
+          "Git",
+          "UML tools"
+        ]
+      },
+      {
+        id: 2,
+        name: "Big Data / Cybersécurité",
+        faculty: "ENSA",
+        type: ["Master intégré"],
+        description: "Big Data, IA, Machine Learning, Sécurité des SI, DevOps",
+        skills: [
+          "Analyse de données",
+          "ML",
+          "sécurité réseau",
+          "CI/CD"
+        ],
+        technologies: [
+          "Hadoop",
+          "Spark",
+          "Python",
+          "Scikit-learn",
+          "Docker",
+          "Jenkins",
+          "Wireshark"
+        ]
+      },
+      {
+        id: 3,
+        name: "Tronc commun",
+        faculty: "ENSA",
+        type: ["Cycle préparatoire"],
+        description: "Algorithmique, Programmation C, Structures de données, Systèmes d'exploitation, Maths, Physique, Électronique, Communication",
+        skills: [
+          "Logique",
+          "programmation procédurale",
+          "modélisation",
+          "simulation",
+          "communication"
+        ],
+        technologies: [
+          "C",
+          "MATLAB",
+          "Maple",
+          "LabVIEW",
+          "Linux",
+          "Word",
+          "PowerPoint"
+        ]
+      }
+    ],
   },
   {
     id: 3,
-    name: "Hassan II University",
-    city: "Casablanca",
-    avatar: "H",
-    color: "bg-indigo-100 text-indigo-600",
-    courses: [],
+    name: "UIR",
+    city: "Unknown",
+    avatar: "U",
+    color: "bg-red-100 text-red-600",
+    courses: [
+      {
+        id: 1,
+        name: "Big Data / SSI / IA",
+        faculty: "UIR",
+        type: ["Master"],
+        description: "Machine Learning, Cryptographie, Dev Web, Data Lakes",
+        skills: [
+          "Big data",
+          "IA appliquée",
+          "sécurité",
+          "visualisation"
+        ],
+        technologies: [
+          "Hadoop",
+          "Spark",
+          "Python",
+          "Tableau",
+          "Docker",
+          "RSA/SSL"
+        ]
+      },
+      {
+        id: 2,
+        name: "Ingénierie informatique",
+        faculty: "UIR",
+        type: ["Licence"],
+        description: "POO, BD, Web, Algo, Architecture des SI",
+        skills: [
+          "Développement logiciel",
+          "base de données",
+          "architecture logicielle"
+        ],
+        technologies: [
+          "Java",
+          "Python",
+          "HTML",
+          "CSS",
+          "SQL"
+        ]
+      }
+    ],
   },
   {
     id: 4,
-    name: "Al Akhawayn University",
-    city: "Ifrane",
-    avatar: "A",
-    color: "bg-blue-100 text-blue-600",
-    courses: [],
+    name: "ENSET",
+    city: "Unknown",
+    avatar: "E",
+    color: "bg-orange-100 text-orange-600",
+    courses: [
+      {
+        id: 1,
+        name: "Systèmes Informatiques Distribués",
+        faculty: "ENSET",
+        type: ["Master"],
+        description: "Cloud, Sécurité, IA, DevOps, Testing",
+        skills: [
+          "Administration système",
+          "dev distribué",
+          "testing",
+          "cloud"
+        ],
+        technologies: [
+          "AWS",
+          "Jenkins",
+          "Selenium",
+          "Python",
+          "Docker"
+        ]
+      },
+      {
+        id: 2,
+        name: "Métiers du développement logiciel",
+        faculty: "ENSET",
+        type: ["Licence Pro"],
+        description: "Développement Web, POO, Gestion projets, Réseaux",
+        skills: [
+          "Développement fullstack",
+          "gestion projet",
+          "collaboration"
+        ],
+        technologies: [
+          "PHP",
+          "Laravel",
+          "JavaScript",
+          "MySQL",
+          "Git"
+        ]
+      }
+    ],
   },
   {
     id: 5,
-    name: "Ibn Tofail University",
-    city: "Kenitra",
-    avatar: "I",
-    color: "bg-cyan-100 text-cyan-600",
-    courses: [],
+    name: "ENSIAS",
+    city: "Unknown",
+    avatar: "S",
+    color: "bg-purple-100 text-purple-600",
+    courses: [
+      {
+        id: 1,
+        name: "IA, Data, SSI, Génie logiciel",
+        faculty: "ENSIAS",
+        type: ["Ingénieur/Master"],
+        description: "Deep learning, NLP, Cloud computing, Sécurité, IoT",
+        skills: [
+          "IA",
+          "cybersécurité",
+          "traitement données",
+          "déploiement cloud"
+        ],
+        technologies: [
+          "TensorFlow",
+          "Keras",
+          "Spark",
+          "AWS",
+          "GCP",
+          "Docker",
+          "Cisco tools"
+        ]
+      },
+      {
+        id: 2,
+        name: "Tronc commun",
+        faculty: "ENSIAS",
+        type: ["1re année ingénieur"],
+        description: "Mathématiques, Algorithmique, Informatique fondamentale, Communication",
+        skills: [
+          "Analyse",
+          "algo",
+          "programmation",
+          "expression orale/écrite"
+        ],
+        technologies: [
+          "C",
+          "Python",
+          "Word",
+          "Excel"
+        ]
+      }
+    ],
   },
   {
     id: 6,
-    name: "Abdelmalek Essaâdi University",
-    city: "Tetouan",
-    avatar: "AE",
-    color: "bg-gray-100 text-gray-600",
-    courses: [],
-  },
+    name: "ENSAM",
+    city: "Unknown",
+    avatar: "A",
+    color: "bg-yellow-100 text-yellow-600",
+    courses: [
+      {
+        id: 1,
+        name: "Systèmes embarqués / Télécom",
+        faculty: "ENSAM",
+        type: ["Ingénieur"],
+        description: "Microcontrôleurs, Réseaux, Electrotechnique, Signal",
+        skills: [
+          "Électronique",
+          "communication",
+          "systèmes temps réel"
+        ],
+        technologies: [
+          "Arduino",
+          "Proteus",
+          "Python",
+          "MATLAB"
+        ]
+      },
+      {
+        id: 2,
+        name: "Tronc commun",
+        faculty: "ENSAM",
+        type: ["Prépa intégrée"],
+        description: "Mathématiques, Physique, Informatique de base",
+        skills: [
+          "Calcul scientifique",
+          "algo de base",
+          "raisonnement logique"
+        ],
+        technologies: [
+          "C",
+          "Excel",
+          "MATLAB"
+        ]
+      }
+    ],
+  }
 ];
+
 
 function IconUniversity() {
   return (
@@ -136,7 +355,7 @@ function Course() {
   );
 
   return (
-    <div className="bg-[#f8fafc] min-h-screen w-full py-0 md:py-6">
+    <div className="bg-[#f8fafc] min-h-screen w-full pb-8">
       {/* Hero Banner */}
       <div className="w-full bg-green-500 py-10 md:py-14 px-4 text-center rounded-b-2xl mb-0">
         <h1 className="text-white font-extrabold text-2xl md:text-4xl mb-2">Explore Moroccan Universities & Courses</h1>
@@ -144,7 +363,7 @@ function Course() {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-2 md:px-6 -mt-12">
+      <div className="max-w-6xl mx-auto px-2 md:px-6 mt-12">
         <div className="bg-white rounded-2xl shadow p-4 md:p-6 flex flex-col gap-4">
           {/* Tabs */}
           <div className="flex gap-4 border-b border-gray-100 mb-2">

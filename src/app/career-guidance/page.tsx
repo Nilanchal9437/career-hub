@@ -5,29 +5,53 @@ import { useState } from "react";
 const universities = [
   {
     id: 1,
-    name: "Mohammed V University",
+    name: "Faculté des Sciences",
     courses: [
-      { id: 1, name: "Computer Science" },
-      { id: 2, name: "Business Administration" },
-      { id: 3, name: "Civil Engineering" },
+      { id: 1, name: "Informatique / Data Science" },
+      { id: 2, name: "Informatique" }
     ],
   },
   {
     id: 2,
-    name: "Cadi Ayyad University",
+    name: "ENSA",
     courses: [
-      { id: 4, name: "Mathematics" },
-      { id: 5, name: "Physics" },
+      { id: 1, name: "Génie Informatique" },
+      { id: 2, name: "Big Data / Cybersécurité" },
+      { id: 3, name: "Tronc commun" }
     ],
   },
   {
     id: 3,
-    name: "Hassan II University",
+    name: "UIR",
     courses: [
-      { id: 6, name: "Law" },
-      { id: 7, name: "Medicine" },
+      { id: 1, name: "Big Data / SSI / IA" },
+      { id: 2, name: "Ingénierie informatique" }
     ],
   },
+  {
+    id: 4,
+    name: "ENSET",
+    courses: [
+      { id: 1, name: "Systèmes Informatiques Distribués" },
+      { id: 2, name: "Métiers du développement logiciel" }
+    ],
+  },
+  {
+    id: 5,
+    name: "ENSIAS",
+    courses: [
+      { id: 1, name: "IA, Data, SSI, Génie logiciel" },
+      { id: 2, name: "Tronc commun" }
+    ],
+  },
+  {
+    id: 6,
+    name: "ENSAM",
+    courses: [
+      { id: 1, name: "Systèmes embarqués / Télécom" },
+      { id: 2, name: "Tronc commun" }
+    ],
+  }
 ];
 
 function IconCap() {
@@ -50,7 +74,7 @@ function CareerGuidance() {
     universities.find((u) => String(u.id) === selectedUniversity)?.courses.map((c) => ({ value: c.id, label: c.name })) || [];
 
   return (
-    <div className="bg-[#f8fafc] min-h-screen w-full py-0 md:py-10 flex flex-col items-center">
+    <div className="bg-[#f8fafc] min-h-screen w-full md:pb-10 pt-2 flex flex-col items-center">
       {/* Hero Section */}
       <div className="w-full max-w-3xl mx-auto text-center mt-10 md:mt-16 px-4">
         <h1 className="font-extrabold text-2xl md:text-4xl text-gray-900 mb-3 flex items-center justify-center gap-2">
@@ -68,7 +92,7 @@ function CareerGuidance() {
         <div>
           <label className="block font-semibold text-gray-800 mb-1">Select University</label>
           <select
-            className="w-full border border-gray-200 rounded-md px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-green-200 mb-1"
+            className="w-full border border-gray-200 rounded-md px-4 py-2 text-base  text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-200 mb-1"
             value={selectedUniversity}
             onChange={(e) => {
               setSelectedUniversity(e.target.value);
@@ -86,7 +110,7 @@ function CareerGuidance() {
         <div>
           <label className="block font-semibold text-gray-800 mb-1">Select Course</label>
           <select
-            className="w-full border border-gray-200 rounded-md px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-green-200 mb-1"
+            className="w-full border border-gray-200  text-gray-800 rounded-md px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-green-200 mb-1"
             value={selectedCourse}
             onChange={(e) => setSelectedCourse(e.target.value)}
             disabled={!selectedUniversity}
