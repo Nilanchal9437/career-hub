@@ -8,40 +8,34 @@ function NavBar() {
   return (
     <header className="w-full bg-white shadow-sm sticky top-0 z-10">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 md:py-4 relative">
-        <div className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           {/* Placeholder for logo icon */}
-          <Image height={30} width={30}  src="/logo.png" alt="icon" /> 
+          <Image height={30} width={30} src="/logo.png" alt="icon" />
           <span className="font-bold text-lg md:text-xl text-gray-800">
             CareerHub
           </span>
-        </div>
+        </Link>
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-8 text-gray-700 font-medium">
-          <Link href="#" className="hover:text-green-600 transition">
+          <Link href="/" className="hover:text-green-600 transition">
             Home
           </Link>
-          <Link href="#" className="hover:text-green-600 transition">
-            About
+          <Link href="/job" className="hover:text-green-600 transition">
+            Job
           </Link>
-          <Link href="#" className="hover:text-green-600 transition">
-            Contact
+          <Link href="/course" className="hover:text-green-600 transition">
+            Course
           </Link>
-          <Link href="#" className="hover:text-green-600 transition">
-            Blog
+          <Link href="/career" className="hover:text-green-600 transition">
+            Career
           </Link>
         </nav>
         <div className="hidden md:flex gap-2 items-center">
           <Link
-            href="#"
-            className="text-green-600 font-semibold hover:underline"
-          >
-            Login
-          </Link>
-          <Link
-            href="#"
+            href="/career-guidance"
             className="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-md text-sm transition"
           >
-            Sign Up
+            Career Guidance
           </Link>
         </div>
         {/* Mobile menu button */}
@@ -68,47 +62,40 @@ function NavBar() {
         {mobileMenuOpen && (
           <div className="absolute top-full left-0 w-full bg-white shadow-lg rounded-b-lg flex flex-col items-center py-4 gap-2 md:hidden animate-fade-in z-20">
             <Link
-              href="#"
+              href="/"
               className="w-full text-center py-2 hover:bg-gray-100"
               onClick={() => setMobileMenuOpen(false)}
             >
               Home
             </Link>
             <Link
-              href="#"
+              href="/job"
               className="w-full text-center py-2 hover:bg-gray-100"
               onClick={() => setMobileMenuOpen(false)}
             >
-              About
+              Job
             </Link>
             <Link
-              href="#"
+              href="/course"
               className="w-full text-center py-2 hover:bg-gray-100"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Contact
+              Course
             </Link>
             <Link
-              href="#"
+              href="/career"
               className="w-full text-center py-2 hover:bg-gray-100"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Blog
+              Career
             </Link>
-            <div className="flex flex-col gap-2 w-full px-4 mt-2">
+            <div className="flex flex-col gap-2 w-full px-4 mt-2"> 
               <Link
-                href="#"
-                className="text-green-600 font-semibold hover:underline w-full text-center"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Login
-              </Link>
-              <Link
-                href="#"
+                href="/career-guidance"
                 className="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-md text-sm transition w-full text-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Sign Up
+                Career Guidance
               </Link>
             </div>
           </div>

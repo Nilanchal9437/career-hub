@@ -15,7 +15,7 @@ function Footer() {
   return (
     <footer className="bg-[#1e293b] text-gray-200 w-full py-10 mt-auto">
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Logo & Description */}
           <div>
             <div className="flex items-center gap-2 mb-2">
@@ -51,44 +51,33 @@ function Footer() {
           </div>
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-3 text-white">Quick Links</h4>
+            <h4 className="font-semibold mb-3 text-white">Our Services</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="#" className="hover:underline">
+                <Link href="/" className="hover:underline">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:underline">
-                  About Us
+                <Link href="/job" className="hover:underline">
+                  Jobs
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:underline">
-                  Services
+                <Link href="/career-guidance" className="hover:underline">
+                  Career Guidance
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:underline">
-                  Blog
+                <Link href="/course" className="hover:underline">
+                Course
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:underline">
-                  Contact
+                <Link href="/career" className="hover:underline">
+                  Career
                 </Link>
               </li>
-            </ul>
-          </div>
-          {/* Our Services */}
-          <div>
-            <h4 className="font-semibold mb-3 text-white">Our Services</h4>
-            <ul className="space-y-2 text-sm">
-              <li>Job Search</li>
-              <li>University Courses</li>
-              <li>Career Guidance</li>
-              <li>Resume Builder</li>
-              <li>Skills Assessment</li>
             </ul>
           </div>
           {/* Contact Us */}
