@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
 
     let guidance;
     try {
-      guidance = JSON.parse(aiResponse);
+      guidance = JSON.parse(aiResponse as any);
     } catch (parseError) {
       // Fallback logic if the response isn't valid JSON
       guidance = {}; // Replace this with your fallback e.g., Excel data retrieval
