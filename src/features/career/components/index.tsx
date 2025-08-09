@@ -73,151 +73,6 @@ function IconCircle({
   );
 }
 
-function IconCheck({ className = "text-green-500" }) {
-  return (
-    <svg
-      className={`w-5 h-5 ${className}`}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-    >
-      <circle cx="12" cy="12" r="10" fill="#DCFCE7" />
-      <path
-        d="M8 12l2 2l4-4"
-        stroke="#22C55E"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function IconGrad() {
-  return (
-    <svg className="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24">
-      <rect width="24" height="24" rx="6" fill="#DBEAFE" />
-      <path
-        d="M12 4l8 4-8 4-8-4 8-4zm0 8v8"
-        stroke="#3B82F6"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-const foundationSkills = [
-  {
-    icon: <IconCheck />,
-    color: "bg-green-100",
-    title: "Python deeply + problem solving",
-    desc: "Master basics, coding challenges and logic-driven thinking",
-  },
-  {
-    icon: <IconCheck />,
-    color: "bg-green-100",
-    title: "Learn Git & GitHub",
-    desc: "Version control, collaboration, open source workflow",
-  },
-  {
-    icon: <IconCheck />,
-    color: "bg-green-100",
-    title: "Logic Building & OOP",
-    desc: "Object-oriented concepts, algorithms, real problems",
-  },
-  {
-    icon: <IconCheck />,
-    color: "bg-green-100",
-    title: "Basic HTML, CSS, and JavaScript",
-    desc: "Web fundamentals, build your first site",
-  },
-  {
-    icon: <IconCheck />,
-    color: "bg-green-100",
-    title: "Intro to Data Structures",
-    desc: "Arrays, lists, stacks, queues, trees, practical application",
-  },
-];
-const bachelorSkills = [
-  {
-    icon: <IconCheck />,
-    color: "bg-blue-100",
-    title: "OOP 2 + solid projects",
-    desc: "Build real-world apps, advanced OOP, functional programming",
-  },
-  {
-    icon: <IconCheck />,
-    color: "bg-blue-100",
-    title: "Learn Django or FastAPI",
-    desc: "Web backend, REST APIs, production-ready web applications",
-  },
-  {
-    icon: <IconCheck />,
-    color: "bg-blue-100",
-    title: "SQL + NoSQL (MongoDB)",
-    desc: "Databases, queries, data modeling",
-  },
-  {
-    icon: <IconCheck />,
-    color: "bg-blue-100",
-    title: "API building + Integration",
-    desc: "Connect frontend & backend, real-world APIs",
-  },
-  {
-    icon: <IconCheck />,
-    color: "bg-blue-100",
-    title: "Data analysis foundations",
-    desc: "Pandas, NumPy, data wrangling, visualization",
-  },
-  {
-    icon: <IconCheck />,
-    color: "bg-blue-100",
-    title: "Version control & teamwork",
-    desc: "Advanced Git, team workflow, open source",
-  },
-  {
-    icon: <IconCheck />,
-    color: "bg-blue-100",
-    title: "Deploy projects",
-    desc: "GitHub, LinkedIn, portfolio step to showcase expertise",
-  },
-];
-const masterSkills = [
-  {
-    icon: <IconCheck />,
-    color: "bg-purple-100",
-    title: "ML frameworks mastery",
-    desc: "scikit-learn, TensorFlow, PyTorch, real model building",
-  },
-  {
-    icon: <IconCheck />,
-    color: "bg-purple-100",
-    title: "Work on real datasets",
-    desc: "Kaggle, UCI, others, real data for exploratory projects",
-  },
-  {
-    icon: <IconCheck />,
-    color: "bg-purple-100",
-    title: "Research projects",
-    desc: "Original research, publish, present at conferences",
-  },
-  {
-    icon: <IconCheck />,
-    color: "bg-purple-100",
-    title: "Contribute to AI tools",
-    desc: "Open source, build tools for ML applications",
-  },
-  {
-    icon: <IconCheck />,
-    color: "bg-purple-100",
-    title: "Publish your work",
-    desc: "GitHub, LinkedIn, portfolio step to showcase expertise",
-  },
-];
-
 function SkillGrid({ skills }: { skills: string[] }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -245,19 +100,20 @@ function Career() {
 
   const getCareer = async () => {
     const { data } = await getCareerGuidance({
-      university: `${decodeURIComponent(`${getCookie("selectedUniversity")}`)}`,
-      course: `${decodeURIComponent(`${getCookie("selectedCourse")}`)}`,
+      university: `${decodeURIComponent(
+        getCookie("selectedUniversity") ?? universities[0].name
+      )}`,
+      course: `${decodeURIComponent(
+        getCookie("selectedCourse") ?? universities[0].courses[0].name
+      )}`,
     });
 
     if (data.success) {
-      console.log("data :: ", data);
       setStore(data);
     } else {
       setStore(null);
     }
   };
-
-  console.log(store);
 
   React.useEffect(() => {
     getCareer();
