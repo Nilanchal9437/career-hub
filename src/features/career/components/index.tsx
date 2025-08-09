@@ -85,7 +85,7 @@ function SkillGrid({ skills }: { skills: string[] }) {
             <CircleCheck className="text-green-500" />
           </IconCircle>
           <div>
-            <div className="font-semibold text-gray-900">{s}</div>
+            <div className="font-semibold text-gray-900 pt-1">{s}</div>
           </div>
         </div>
       ))}
