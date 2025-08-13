@@ -265,7 +265,7 @@ function Career() {
             </ul>
           </div>
           {/* Card 3 */}
-          <div className="bg-white rounded-xl shadow-sm border-l-4 border-blue-500 p-6 flex flex-col gap-2 border border-gray-100">
+          <div className="bg-white rounded-xl shadow-sm border-l-4 border-blue-500 p-6 flex flex-col gap-2 border border-blue-100">
             <div className="flex items-center gap-2 mb-2">
               <IconCircle color="bg-blue-100">
                 <span className="font-bold text-blue-700 text-lg">3</span>

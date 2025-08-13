@@ -59,7 +59,7 @@ function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/job" className="hover:underline">
+                <Link href="/career-guidance" className="hover:underline">
                   Jobs
                 </Link>
               </li>
