@@ -20,7 +20,7 @@ function NavBar() {
           <Link href="/" className="hover:text-green-600 transition">
             Home
           </Link>
-          <Link href="/job" className="hover:text-green-600 transition">
+          <Link href="/career-guidance" className="hover:text-green-600 transition">
             Job
           </Link>
           <Link href="/course" className="hover:text-green-600 transition">

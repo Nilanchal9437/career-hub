@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { GraduationCap } from "lucide-react";
+import { GraduationCap, BookCopy } from "lucide-react";
 
 const universities = [
   {
@@ -87,6 +87,21 @@ function CareerGuidance() {
     router.push("/job");
   };
 
+  const onCareer = () => {
+    const expires = new Date();
+    expires.setTime(expires.getTime() + 2 * 24 * 60 * 60 * 1000);
+
+    document.cookie = `selectedUniversity=${encodeURIComponent(
+      `${universities.find((u) => String(u.id) === selectedUniversity)?.name}`
+    )}; expires=${expires.toUTCString()}; path=/`;
+
+    document.cookie = `selectedCourse=${encodeURIComponent(
+      courseOptions[parseInt(selectedCourse) - 1]?.label
+    )}; expires=${expires.toUTCString()}; path=/`;
+
+    router.push("/career");
+  };
+
   return (
     <div className="bg-[#f8fafc] min-h-screen w-full md:pb-10 pt-2 flex flex-col items-center">
       {/* Hero Section */}
@@ -150,7 +165,7 @@ function CareerGuidance() {
       </div>
 
       {/* Start Button */}
-      <div className="w-full flex justify-center">
+      <div className="w-full flex justify-center gap-2">
         <button
           className="bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-3 rounded-md text-base flex items-center gap-2 transition shadow"
           disabled={!selectedUniversity || !selectedCourse}
@@ -160,6 +175,16 @@ function CareerGuidance() {
         >
           <GraduationCap />
           Start Your Journey
+        </button>
+        <button
+          className="bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-3 rounded-md text-base flex items-center gap-2 transition shadow"
+          disabled={!selectedUniversity || !selectedCourse}
+          onClick={() => {
+            onCareer();
+          }}
+        >
+          <BookCopy />
+          Start Your Career
         </button>
       </div>
     </div>

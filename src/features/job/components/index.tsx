@@ -7,7 +7,14 @@ import CustomPagination from "@/components/Pagination";
 import Container from "@/components/Container";
 import { getCookie } from "@/libs/Cookie";
 import useJobPost from "@/features/job/apis/getJob";
-import { Calendar, MapPin, Building, Copy, ExternalLink, Laptop } from "lucide-react";
+import {
+  Calendar,
+  MapPin,
+  Building,
+  Copy,
+  ExternalLink,
+  Laptop,
+} from "lucide-react";
 import debounce from "lodash/debounce";
 
 function getRepeatIntervalCode(days: number) {
@@ -211,6 +218,14 @@ export default function Jobs() {
               <option value="hybrid">Hybrid</option>
               <option value="all">All Types</option>
             </select>
+          </div>
+          <div className="flex w-[100px]">
+            <button
+              onClick={() => getJobList()}
+              className="h-10 w-full mt-5 bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-md text-sm transition"
+            >
+              Search
+            </button>
           </div>
         </div>
       </section>
