@@ -344,27 +344,29 @@ function Career() {
                 Licence (Bachelor's Level)
               </h2>
             </div>
-            {store?.licenseSkills &&
-              Array.isArray(store?.licenseSkills) &&
-              store?.licenseSkills.length > 0 &&
-              store?.licenseSkills?.map((s: any, i: number) => (
-                <div
-                  key={i}
-                  className="bg-white rounded-xl shadow-sm p-2 flex gap-3 items-start border border-gray-100 items-center"
-                >
-                  <IconCircle color="bg-green-100">
-                    <CircleCheck className="text-green-500" />
-                  </IconCircle>
-                  <div>
-                    <div className="font-semibold text-gray-900 pt-1">
-                      {s?.skillName}
-                    </div>
-                    <div className="text-xs text-gray-500 leading-snug">
-                      {s?.description}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {store?.licenseSkills &&
+                Array.isArray(store?.licenseSkills) &&
+                store?.licenseSkills.length > 0 &&
+                store?.licenseSkills?.map((s: any, i: number) => (
+                  <div
+                    key={i}
+                    className="bg-white rounded-xl shadow-sm p-2 flex gap-3 items-start border border-gray-100 items-center"
+                  >
+                    <IconCircle color="bg-green-100">
+                      <CircleCheck className="text-green-500" />
+                    </IconCircle>
+                    <div>
+                      <div className="font-semibold text-gray-900 pt-1">
+                        {s?.skillName}
+                      </div>
+                      <div className="text-xs text-gray-500 leading-snug">
+                        {s?.description}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+            </div>
           </section>
 
           {/* Master's Level */}
@@ -380,27 +382,29 @@ function Career() {
             <p className="text-gray-500 mb-6 ml-1">
               Specialize in high-impact skills. Future proof skills.
             </p>
-            {store?.masterSkills &&
-              Array.isArray(store?.masterSkills) &&
-              store?.masterSkills.length > 0 &&
-              store?.masterSkills?.map((s: any, i: number) => (
-                <div
-                  key={i}
-                  className="bg-white rounded-xl shadow-sm p-2 flex gap-3 items-start border border-gray-100 items-center"
-                >
-                  <IconCircle color="bg-green-100">
-                    <CircleCheck className="text-green-500" />
-                  </IconCircle>
-                  <div>
-                    <div className="font-semibold text-gray-900 pt-1">
-                      {s?.skillName}
-                    </div>
-                    <div className="text-xs text-gray-500 leading-snug">
-                      {s?.description}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {store?.masterSkills &&
+                Array.isArray(store?.masterSkills) &&
+                store?.masterSkills.length > 0 &&
+                store?.masterSkills?.map((s: any, i: number) => (
+                  <div
+                    key={i}
+                    className="bg-white rounded-xl shadow-sm p-2 flex gap-3 items-start border border-gray-100 items-center"
+                  >
+                    <IconCircle color="bg-green-100">
+                      <CircleCheck className="text-green-500" />
+                    </IconCircle>
+                    <div>
+                      <div className="font-semibold text-gray-900 pt-1">
+                        {s?.skillName}
+                      </div>
+                      <div className="text-xs text-gray-500 leading-snug">
+                        {s?.description}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+            </div>
           </section>
 
           {/* College vs Market */}
