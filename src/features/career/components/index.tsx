@@ -1,9 +1,16 @@
 "use client";
 
 import * as React from "react";
-import { CircleCheck, Book, GraduationCap, Cpu } from "lucide-react";
+import {
+  CircleCheck,
+  Book,
+  GraduationCap,
+  Cpu,
+  BriefcaseBusiness,
+} from "lucide-react";
 import useCareerGuidance from "@/features/career/api/get";
 import { getCookie } from "@/libs/Cookie";
+import Container from "@/components/Container";
 
 const universities = [
   {
@@ -73,32 +80,193 @@ function IconCircle({
   );
 }
 
-function SkillGrid({ skills }: { skills: string[] }) {
+const COLORS = {
+  green: {
+    border: "border-green-500",
+    bg: "bg-green-100",
+    text: "text-green-700",
+  },
+  pink: { border: "border-pink-600", bg: "bg-pink-100", text: "text-pink-700" },
+  yellow: {
+    border: "border-yellow-600",
+    bg: "bg-yellow-100",
+    text: "text-yellow-700",
+  },
+  purple: {
+    border: "border-purple-500",
+    bg: "bg-purple-100",
+    text: "text-purple-700",
+  },
+};
+
+// components/LearningRoadmapSkeleton.tsx
+function LearningRoadmapSkeleton() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-      {skills.map((s, i) => (
-        <div
-          key={i}
-          className="bg-white rounded-xl shadow-sm p-2 flex gap-3 items-start border border-gray-100 items-center"
-        >
-          <IconCircle color="bg-green-100">
-            <CircleCheck className="text-green-500" />
-          </IconCircle>
-          <div>
-            <div className="font-semibold text-gray-900 pt-1">{s}</div>
-          </div>
+    <div className="animate-pulse space-y-10">
+      {/* Course Name */}
+      <section className="mx-auto px-2 md:px-6 pt-8">
+        <div className="h-6 w-56 bg-gray-300 rounded-md mb-4"></div>
+      </section>
+
+      {/* Foundation Phase */}
+      <section className="mx-auto px-2 md:px-6 pt-8">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="h-10 w-10 rounded-full bg-gray-300"></div>
+          <div className="h-6 w-64 bg-gray-300 rounded"></div>
         </div>
-      ))}
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {Array.from({ length: 3 }).map((_, i) => (
+            <div
+              key={i}
+              className="bg-white rounded-xl shadow-sm p-4 flex gap-3 items-center border border-gray-100"
+            >
+              <div className="h-8 w-8 rounded-full bg-gray-300"></div>
+              <div className="flex flex-col gap-2">
+                <div className="h-4 w-40 bg-gray-300 rounded"></div>
+                <div className="h-3 w-64 bg-gray-300 rounded"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Intermediate Phase */}
+      <section className="mx-auto px-2 md:px-6 pt-8">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="h-10 w-10 rounded-full bg-gray-300"></div>
+          <div className="h-6 w-64 bg-gray-300 rounded"></div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {Array.from({ length: 2 }).map((_, i) => (
+            <div
+              key={i}
+              className="bg-white rounded-xl shadow-sm p-4 flex gap-3 items-center border border-gray-100"
+            >
+              <div className="h-8 w-8 rounded-full bg-gray-300"></div>
+              <div className="flex flex-col gap-2">
+                <div className="h-4 w-40 bg-gray-300 rounded"></div>
+                <div className="h-3 w-64 bg-gray-300 rounded"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Advanced Phase */}
+      <section className="mx-auto px-2 md:px-6 pt-8">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="h-10 w-10 rounded-full bg-gray-300"></div>
+          <div className="h-6 w-64 bg-gray-300 rounded"></div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {Array.from({ length: 2 }).map((_, i) => (
+            <div
+              key={i}
+              className="bg-white rounded-xl shadow-sm p-4 flex gap-3 items-center border border-gray-100"
+            >
+              <div className="h-8 w-8 rounded-full bg-gray-300"></div>
+              <div className="flex flex-col gap-2">
+                <div className="h-4 w-40 bg-gray-300 rounded"></div>
+                <div className="h-3 w-64 bg-gray-300 rounded"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
 
+// Helper → format camelCase → Normal text
+const formatName = (str: string) =>
+  str.replace(/([A-Z])/g, " $1").replace(/^./, (c) => c.toUpperCase());
+
+interface ColorTheme {
+  border: string;
+  bg: string;
+  text: string;
+}
+
+interface GenerateCardProps {
+  objName: string;
+  data: any;
+  color: ColorTheme; // 🎨 color passed as prop
+}
+
+const GenerateCard: React.FC<GenerateCardProps> = ({
+  objName,
+  data,
+  color,
+}) => {
+  const renderObject = (item: any, idx?: number) => (
+    <div
+      key={idx}
+      className={`bg-white rounded-xl shadow-sm border-l-4 p-6 flex flex-col gap-2 border border-gray-100 ${color.border}`}
+    >
+      <div className="flex items-center gap-2 mb-2">
+        <div
+          className={`${color.bg} w-8 h-8 flex items-center justify-center rounded-full`}
+        >
+          <span className={`font-bold ${color.text} text-lg`}>
+            {idx !== undefined ? idx + 1 : 1}
+          </span>
+        </div>
+        <span className={`font-semibold ${color.text} text-lg capitalize`}>
+          {formatName(objName)}
+        </span>
+      </div>
+
+      {Object.entries(item).map(([key, value]) => (
+        <div key={key} className="mb-2">
+          <span className={`font-semibold ${color.text} capitalize`}>
+            {formatName(key)}:
+          </span>
+
+          {Array.isArray(value) ? (
+            <ul className="text-base text-gray-700 list-disc ml-4">
+              {value.map((v, i) => (
+                <li key={i}>{typeof v === "object" ? JSON.stringify(v) : v}</li>
+              ))}
+            </ul>
+          ) : typeof value === "object" && value !== null ? (
+            <ul className="text-base text-gray-700 list-disc ml-4">
+              {Object.entries(value).map(([subKey, subVal]) => (
+                <li key={subKey}>
+                  <strong>{formatName(subKey)}:</strong>{" "}
+                  {typeof subVal === "object"
+                    ? JSON.stringify(subVal)
+                    : String(subVal)}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <span className="text-gray-700 ml-2">{String(value)}</span>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+
+  if (Array.isArray(data)) {
+    return <>{data.map((item, idx) => renderObject(item, idx))}</>;
+  }
+  if (typeof data === "object" && data !== null) {
+    return renderObject(data);
+  }
+  return null;
+};
+
 function Career() {
+  const [load, setLoad] = React.useState<boolean>(true);
   const [store, setStore] = React.useState<any>(null);
 
   const { getCareerGuidance } = useCareerGuidance();
 
   const getCareer = async () => {
+    setLoad(true);
     const { data } = await getCareerGuidance({
       university: `${decodeURIComponent(
         getCookie("selectedUniversity") ?? universities[0].name
@@ -113,6 +281,7 @@ function Career() {
     } else {
       setStore(null);
     }
+    setLoad(false);
   };
 
   React.useEffect(() => {
@@ -120,342 +289,313 @@ function Career() {
   }, []);
 
   return (
-    <div className="bg-[#f8fafc] min-h-screen w-full py-0 md:py-8">
-      {/* Foundation Year */}
-      <section className="max-w-5xl mx-auto px-2 md:px-6 pt-8">
-        <div className="flex items-center gap-3 mb-6">
-          <IconCircle color="bg-green-100">
-            <Book className="text-green-500" />
-          </IconCircle>
-          <h2 className="font-bold text-2xl text-gray-900">{store?.course}</h2>
-        </div>
-        <p className="text-gray-500 mb-6 ml-1">
-          Build your coding mindset with strong foundation.
-        </p>
-        <SkillGrid skills={(store?.modules as string[]) ?? []} />
-      </section>
-
-      {/* Bachelor's Level */}
-      <section className="max-w-5xl mx-auto px-2 md:px-6 mt-14">
-        <div className="flex items-center gap-3 mb-6">
-          <IconCircle color="bg-blue-100">
-            <GraduationCap className="text-blue-500" />
-          </IconCircle>
-          <h2 className="font-bold text-2xl text-gray-900">
-            {store?.level ?? ""}
-          </h2>
-        </div>
-        <p className="text-gray-500 mb-6 ml-1">
-          Become job ready in {store?.course} + launch data fields.
-        </p>
-        <SkillGrid skills={(store?.learningPath as string[]) ?? []} />
-      </section>
-
-      {/* Master's Level */}
-      <section className="max-w-5xl mx-auto px-2 md:px-6 mt-14">
-        <div className="flex items-center gap-3 mb-6">
-          <IconCircle color="bg-purple-100">
-            <Cpu className="text-purple-500" />
-          </IconCircle>
-          <h2 className="font-bold text-2xl text-gray-900">
-            {store?.level ?? ""} Skills
-          </h2>
-        </div>
-        <p className="text-gray-500 mb-6 ml-1">
-          Specialize in high-impact skills. Future proof skills.
-        </p>
-        <SkillGrid skills={(store?.essentialSkills as string[]) ?? []} />
-      </section>
-
-      {/* College vs Market */}
-      {/* <section className="max-w-5xl mx-auto px-2 md:px-6 mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-blue-50 rounded-xl p-6 flex flex-col gap-2 shadow-sm border border-blue-100">
-          <div className="flex items-center gap-2 mb-2">
-            <IconCircle color="bg-blue-200">
-              <IconInfo className="text-blue-500" />
-            </IconCircle>
-            <span className="font-semibold text-blue-900 text-lg">
-              What Your College Teaches
-            </span>
-          </div>
-          <ul className="text-base text-blue-900 list-disc ml-7 mb-2">
-            <li>Core Python programming</li>
-            <li>Key topics: syntax, functions, OOP</li>
-            <li>Probably more solo or specific academic projects</li>
-            <li>
-              <span className="font-semibold text-green-700">
-                Good foundation
-              </span>{" "}
-              but not enough for today's job market
-            </li>
-          </ul>
-        </div>
-        <div className="bg-green-50 rounded-xl p-6 flex flex-col gap-2 shadow-sm border border-green-100">
-          <div className="flex items-center gap-2 mb-2">
-            <IconCircle color="bg-green-200">
-              <IconMarket className="text-green-600" />
-            </IconCircle>
-            <span className="font-semibold text-green-900 text-lg">
-              What's Demanded in the Market
-            </span>
-          </div>
-          <ul className="text-base text-green-900 list-disc ml-7 mb-2">
-            <li className="flex items-center gap-2">
-              <IconCheck className="text-green-500" />
-              Backend frameworks (Django, FastAPI)
-            </li>
-            <li className="flex items-center gap-2">
-              <IconCheck className="text-green-500" />
-              Databases (relational, SQL, ORM, GCP)
-            </li>
-            <li className="flex items-center gap-2">
-              <IconCheck className="text-green-500" />
-              Version control & CI/CD
-            </li>
-            <li className="flex items-center gap-2">
-              <IconCheck className="text-green-500" />
-              Data & ML skills
-            </li>
-            <li>
-              <span className="font-semibold text-green-700">
-                Industry-ready skills
-              </span>{" "}
-              that make your resume stand out
-            </li>
-          </ul>
-        </div>
-      </section> */}
-
-      {/* Global Job Market */}
-      <section className="max-w-5xl mx-auto px-2 md:px-6 mt-16">
-        <h3 className="font-bold text-2xl text-gray-900 mb-8">
-          What's Demanded in the Global Job Market
-        </h3>
-        <div className="flex flex-col gap-6">
-          {/* Card 1 */}
-          <div className="bg-white rounded-xl shadow-sm border-l-4 border-green-500 p-6 flex flex-col gap-2 border border-gray-100">
-            <div className="flex items-center gap-2 mb-2">
+    <Container className="py-0 md:py-8">
+      {load ? (
+        <LearningRoadmapSkeleton />
+      ) : (
+        <>
+          <section className="mx-auto px-2 md:px-6 pt-8">
+            <h2 className="font-bold text-2xl text-gray-900">
+              {store?.courseName}
+            </h2>
+          </section>
+          {/* Foundation Year */}
+          <section className="mx-auto px-2 md:px-6 pt-8">
+            <div className="flex items-center gap-3 mb-6">
               <IconCircle color="bg-green-100">
-                <span className="font-bold text-green-700 text-lg">1</span>
+                <Book className="text-green-500" />
               </IconCircle>
-              <span className="font-semibold text-green-700 text-lg">
-                {store?.level ?? ""} level {store?.course} Developer Skills
-              </span>
+              <h2 className="font-bold text-2xl text-gray-900">
+                Tronc Commun (Foundation Year)
+              </h2>
             </div>
-            <ul className="text-base text-gray-700 list-disc ml-7">
-              {store?.essentialSkills.map((item: string, index: number) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-          </div>
-          {/* Card 2 */}
-          <div className="bg-white rounded-xl shadow-sm border-l-4 border-purple-500 p-6 flex flex-col gap-2 border border-gray-100">
-            <div className="flex items-center gap-2 mb-2">
-              <IconCircle color="bg-purple-100">
-                <span className="font-bold text-purple-700 text-lg">2</span>
-              </IconCircle>
-              <span className="font-semibold text-purple-700 text-lg">
-                Industry Demand {store?.industryDemand ?? ""}
-              </span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {store?.foundationSkills &&
+                Array.isArray(store?.foundationSkills) &&
+                store?.foundationSkills.length > 0 &&
+                store?.foundationSkills?.map((s: any, i: number) => (
+                  <div
+                    key={i}
+                    className="bg-white rounded-xl shadow-sm p-2 flex gap-3 items-start border border-gray-100 items-center"
+                  >
+                    <IconCircle color="bg-green-100">
+                      <CircleCheck className="text-green-500" />
+                    </IconCircle>
+                    <div>
+                      <div className="font-semibold text-gray-900 pt-1">
+                        {s?.skillName}
+                      </div>
+                      <div className="text-xs text-gray-500 leading-snug">
+                        {s?.description}
+                      </div>
+                    </div>
+                  </div>
+                ))}
             </div>
-            <ul className="text-base text-gray-700 list-disc ml-7">
-              {store?.careerOpportunities.map((item: string, index: number) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-          </div>
-          {/* Card 3 */}
-          <div className="bg-white rounded-xl shadow-sm border-l-4 border-blue-500 p-6 flex flex-col gap-2 border border-blue-100">
-            <div className="flex items-center gap-2 mb-2">
+          </section>
+
+          {/* Bachelor's Level */}
+          <section className="mx-auto px-2 md:px-6 mt-14">
+            <div className="flex items-center gap-3 mb-6">
               <IconCircle color="bg-blue-100">
-                <span className="font-bold text-blue-700 text-lg">3</span>
+                <GraduationCap className="text-blue-500" />
               </IconCircle>
-              <span className="font-semibold text-blue-700 text-lg">
-                Market Growth & Gaps
-              </span>
+              <h2 className="font-bold text-2xl text-gray-900">
+                Licence (Bachelor's Level)
+              </h2>
             </div>
-            <ul className="text-base text-gray-700 list-disc ml-7">
-              {store?.nextSteps.map((item: string, index: number) => (
-                <li key={index}>{item}</li>
+            {store?.licenseSkills &&
+              Array.isArray(store?.licenseSkills) &&
+              store?.licenseSkills.length > 0 &&
+              store?.licenseSkills?.map((s: any, i: number) => (
+                <div
+                  key={i}
+                  className="bg-white rounded-xl shadow-sm p-2 flex gap-3 items-start border border-gray-100 items-center"
+                >
+                  <IconCircle color="bg-green-100">
+                    <CircleCheck className="text-green-500" />
+                  </IconCircle>
+                  <div>
+                    <div className="font-semibold text-gray-900 pt-1">
+                      {s?.skillName}
+                    </div>
+                    <div className="text-xs text-gray-500 leading-snug">
+                      {s?.description}
+                    </div>
+                  </div>
+                </div>
               ))}
-            </ul>
-          </div>
-          {/* Card 4 */}
-          <div className="bg-white rounded-xl shadow-sm border-l-4 border-red-500 p-6 flex flex-col gap-2 border border-gray-100">
-            <div className="flex items-center gap-2 mb-2">
-              <IconCircle color="bg-red-100">
-                <span className="font-bold text-red-700 text-lg">4</span>
-              </IconCircle>
-              <span className="font-semibold text-red-700 text-lg">
-                University vs. Industry: Skill Gaps
-              </span>
-            </div>
-            <ul className="text-base text-gray-700 list-disc ml-7">
-              {store?.recommendedCertifications.map(
-                (item: string, index: number) => (
-                  <li key={index}>{item}</li>
-                )
-              )}
-            </ul>
-            <ol className="ml-3 text-base text-gray-700 list-decimal list-inside">
-              {store?.technologyStack.map((item: string, index: number) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ol>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      {/* Skills Comparison Table */}
-      {/* <section className="max-w-5xl mx-auto px-2 md:px-6 mt-16">
-        <h3 className="font-bold text-2xl text-gray-900 mb-6">
-          University vs. Industry: Skills Comparison
-        </h3>
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-white rounded-xl shadow-sm text-base border border-gray-100">
-            <thead>
-              <tr className="bg-gray-50">
-                <th className="px-4 py-3 text-left font-semibold">Areas</th>
-                <th className="px-4 py-3 text-left font-semibold">
-                  University Focus
-                </th>
-                <th className="px-4 py-3 text-left font-semibold">
-                  Industry Demand
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                [
-                  "Python basics",
-                  "Syntax, functions, OOP",
-                  <span className="text-green-700 font-semibold">
-                    Core + frameworks & clean code practices
-                  </span>,
-                ],
-                [
-                  "Backend development",
-                  "Limited",
-                  "Django, FastAPI, REST APIs",
-                ],
-                ["Containerization", "N/A", "Docker, CI/CD, DevOps, cloud"],
-                [
-                  "AI/ML skills",
-                  "Basic stats, ML foundations",
-                  "scikit-learn, TensorFlow, PyTorch",
-                ],
-                [
-                  "Soft skills",
-                  "Not emphasized",
-                  "Collaboration, teamwork, critical thinking",
-                ],
-                [
-                  "Statistics",
-                  "Academic, theoretical",
-                  "Visualization, reporting, storytelling",
-                ],
-              ].map((row, i) => (
-                <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                  <td className="px-4 py-3 font-medium">{row[0]}</td>
-                  <td className="px-4 py-3">{row[1]}</td>
-                  <td className="px-4 py-3">{row[2]}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section> */}
-
-      {/* What You Should Learn Next */}
-      {/* <section className="max-w-5xl mx-auto px-2 md:px-6 mt-16">
-        <h3 className="font-bold text-2xl text-gray-900 mb-6">
-          What You Should Learn Next
-        </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-xl p-6 flex flex-col gap-2 shadow-sm border border-gray-100">
-            <div className="flex items-center gap-2 mb-2">
-              <IconCircle color="bg-green-100">
-                <IconCheck />
-              </IconCircle>
-              <span className="font-semibold text-green-700 text-lg">
-                Technical Stack Roadmap
-              </span>
-            </div>
-            <ul className="text-base text-gray-700 list-disc ml-7">
-              <li>Backend: Learn Django or FastAPI + ORM/REST API</li>
-              <li>SQL/NoSQL (PostgreSQL, MySQL, MongoDB)</li>
-              <li>Docker, container, AWS fundamentals</li>
-              <li>All APIs: Flask, FastAPI, NumPy, Scikit Learn</li>
-              <li>
-                Greenfield: Ex: Explore skills like LLMs, API for natural
-                automation
-              </li>
-            </ul>
-          </div>
-          <div className="bg-white rounded-xl p-6 flex flex-col gap-2 shadow-sm border border-gray-100">
-            <div className="flex items-center gap-2 mb-2">
-              <IconCircle color="bg-green-100">
-                <IconCheck />
-              </IconCircle>
-              <span className="font-semibold text-green-700 text-lg">
-                Soft/Support Skills
-              </span>
-            </div>
-            <ul className="text-base text-gray-700 list-disc ml-7">
-              <li>Git workflows & teamwork</li>
-              <li>CI/CD basics (GitHub Actions, Jenkins)</li>
-              <li>Written communication & clarity</li>
-              <li>Problem-solving methodology</li>
-              <li>Collaborative development</li>
-            </ul>
-          </div>
-          <div className="bg-white rounded-xl p-6 flex flex-col gap-2 shadow-sm border border-gray-100">
-            <div className="flex items-center gap-2 mb-2">
+          {/* Master's Level */}
+          <section className="mx-auto px-2 md:px-6 mt-14">
+            <div className="flex items-center gap-3 mb-6">
               <IconCircle color="bg-purple-100">
-                <IconHat />
+                <Cpu className="text-purple-500" />
               </IconCircle>
-              <span className="font-semibold text-purple-700 text-lg">
-                Project Ideas
-              </span>
+              <h2 className="font-bold text-2xl text-gray-900">
+                Masters Level
+              </h2>
             </div>
-            <ul className="text-base text-gray-700 list-disc ml-7">
-              <li>Blog site or e-commerce backend</li>
-              <li>Data viz, ML model: classification or regression</li>
-              <li>Generator API: text, image, chatbot or video</li>
-              <li>Any integration project with authentication</li>
-            </ul>
-          </div>
-        </div>
-      </section> */}
+            <p className="text-gray-500 mb-6 ml-1">
+              Specialize in high-impact skills. Future proof skills.
+            </p>
+            {store?.masterSkills &&
+              Array.isArray(store?.masterSkills) &&
+              store?.masterSkills.length > 0 &&
+              store?.masterSkills?.map((s: any, i: number) => (
+                <div
+                  key={i}
+                  className="bg-white rounded-xl shadow-sm p-2 flex gap-3 items-start border border-gray-100 items-center"
+                >
+                  <IconCircle color="bg-green-100">
+                    <CircleCheck className="text-green-500" />
+                  </IconCircle>
+                  <div>
+                    <div className="font-semibold text-gray-900 pt-1">
+                      {s?.skillName}
+                    </div>
+                    <div className="text-xs text-gray-500 leading-snug">
+                      {s?.description}
+                    </div>
+                  </div>
+                </div>
+              ))}
+          </section>
 
-      {/* Final Take */}
-      {/* <section className="max-w-5xl mx-auto px-2 md:px-6 mt-16 mb-10">
-        <div className="bg-blue-50 rounded-xl p-6 flex flex-col gap-2 shadow-sm border border-blue-100">
-          <div className="flex items-center gap-2 mb-2">
-            <IconCircle color="bg-blue-200">
-              <IconInfo className="text-blue-500" />
-            </IconCircle>
-            <span className="font-semibold text-blue-900 text-lg">
-              Final Take
-            </span>
-          </div>
-          <div className="text-gray-700 text-base">
-            Your university gives you the foundation, but the global job market
-            demands a broader skillset in:
-            <ul className="list-disc ml-7 mt-2">
-              <li>Web/backend engineering</li>
-              <li>Data science & ML</li>
-              <li>Soft skills and AI-ready teamwork</li>
-            </ul>
-            <div className="mt-2">
-              Adding these to your learning—especially technical skills—will
-              make your resume stand out and position you well for both Python
-              dev and advanced AI roles.
+          {/* College vs Market */}
+          <section className="mx-auto px-2 md:px-6 mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-blue-50 rounded-xl p-6 flex flex-col gap-2 shadow-sm border border-blue-100">
+              <div className="flex items-center gap-2 mb-2">
+                <IconCircle color="bg-blue-200">
+                  <GraduationCap className="text-blue-600" />
+                </IconCircle>
+                <span className="font-semibold text-lg">
+                  What Your College Teaches
+                </span>
+              </div>
+              <span className="font-semibold text-sm">Strengths</span>
+              <ul className="text-base text-blue-900 list-disc ml-4 mb-2">
+                {store?.skillsGapAnalysis?.universityTeaching?.strengths &&
+                  Array.isArray(
+                    store?.skillsGapAnalysis?.universityTeaching?.strengths
+                  ) &&
+                  store?.skillsGapAnalysis?.universityTeaching?.strengths
+                    .length > 0 &&
+                  store?.skillsGapAnalysis?.universityTeaching?.strengths.map(
+                    (item: any, index: number) => (
+                      <li className="flex items-center gap-2 mb-2" key={index}>
+                        <CircleCheck className="text-blue-500" />
+                        {item}
+                      </li>
+                    )
+                  )}
+              </ul>
+              <span className="font-semibold text-sm">Weaknesses</span>
+              <ul className="text-base text-blue-900 list-disc ml-4 mb-2">
+                {store?.skillsGapAnalysis?.universityTeaching?.weaknesses &&
+                  Array.isArray(
+                    store?.skillsGapAnalysis?.universityTeaching?.weaknesses
+                  ) &&
+                  store?.skillsGapAnalysis?.universityTeaching?.weaknesses
+                    .length > 0 &&
+                  store?.skillsGapAnalysis?.universityTeaching?.weaknesses.map(
+                    (item: any, index: number) => (
+                      <li className="flex items-center gap-2 mb-2" key={index}>
+                        <CircleCheck className="text-blue-500" />
+                        {item}
+                      </li>
+                    )
+                  )}
+              </ul>
             </div>
-          </div>
-        </div>
-      </section> */}
-    </div>
+            <div className="bg-green-50 rounded-xl p-6 flex flex-col gap-2 shadow-sm border border-green-100">
+              <div className="flex items-center gap-2 mb-2">
+                <IconCircle color="bg-green-200">
+                  <BriefcaseBusiness className="text-green-600" />
+                </IconCircle>
+                <span className="font-semibold text-green-900 text-lg">
+                  What's Demanded in the Market
+                </span>
+              </div>
+              <span className="font-semibold text-sm">Industry Demand</span>
+              <ul className="text-base text-blue-900 list-disc ml-4 mb-2">
+                {store?.skillsGapAnalysis?.industryDemand?.criticalSkills &&
+                  Array.isArray(
+                    store?.skillsGapAnalysis?.industryDemand?.criticalSkills
+                  ) &&
+                  store?.skillsGapAnalysis?.industryDemand?.criticalSkills
+                    .length > 0 &&
+                  store?.skillsGapAnalysis?.industryDemand?.criticalSkills.map(
+                    (item: any, index: number) => (
+                      <li className="flex items-center gap-2 mb-2" key={index}>
+                        <CircleCheck className="text-green-500" />
+                        {item}
+                      </li>
+                    )
+                  )}
+              </ul>
+              <span className="font-semibold text-sm">Emerging Skills</span>
+              <ul className="text-base text-blue-900 list-disc ml-4 mb-2">
+                {store?.skillsGapAnalysis?.industryDemand?.emergingSkills &&
+                  Array.isArray(
+                    store?.skillsGapAnalysis?.industryDemand?.emergingSkills
+                  ) &&
+                  store?.skillsGapAnalysis?.industryDemand?.emergingSkills
+                    .length > 0 &&
+                  store?.skillsGapAnalysis?.industryDemand?.emergingSkills.map(
+                    (item: any, index: number) => (
+                      <li className="flex items-center gap-2 mb-2" key={index}>
+                        <CircleCheck className="text-green-500" />
+                        {item}
+                      </li>
+                    )
+                  )}
+              </ul>
+              <span className="font-semibold text-sm">
+                IndustryReady Skills
+              </span>
+              <ul className="text-base text-blue-900 list-disc ml-4 mb-2">
+                {store?.skillsGapAnalysis?.industryDemand
+                  ?.industryReadySkills &&
+                  Array.isArray(
+                    store?.skillsGapAnalysis?.industryDemand
+                      ?.industryReadySkills
+                  ) &&
+                  store?.skillsGapAnalysis?.industryDemand?.industryReadySkills
+                    .length > 0 &&
+                  store?.skillsGapAnalysis?.industryDemand?.industryReadySkills.map(
+                    (item: any, index: number) => (
+                      <li className="flex items-center gap-2 mb-2" key={index}>
+                        <CircleCheck className="text-green-500" />
+                        {item}
+                      </li>
+                    )
+                  )}
+              </ul>
+            </div>
+          </section>
+
+          {/* Global Job Market */}
+          <section className="mx-auto px-2 md:px-6 mt-16">
+            <h3 className="font-bold text-2xl text-gray-900 mb-8">
+              What's Demanded in the Global Job Market
+            </h3>
+            <div className="flex flex-col gap-6">
+              {/* Card 1 */}
+              {store?.careerOpportunities && (
+                <GenerateCard
+                  objName="Career Opportunities"
+                  data={store?.careerOpportunities}
+                  color={COLORS.green}
+                />
+              )}
+              {/* Card 2 */}
+              {store?.technicalRoadmapSuggestions && (
+                <GenerateCard
+                  objName="TechnicalRoadmap Suggestions"
+                  data={store?.technicalRoadmapSuggestions}
+                  color={COLORS.pink}
+                />
+              )}
+              {/* Card 3 */}
+              {store?.softSkillsDevelopment && (
+                <GenerateCard
+                  objName="Soft Skills Development"
+                  data={store?.softSkillsDevelopment}
+                  color={COLORS.purple}
+                />
+              )}
+              {/* Card 4 */}
+              {store?.projectIdeas && (
+                <GenerateCard
+                  objName="Project Ideas"
+                  data={store?.projectIdeas}
+                  color={COLORS.yellow}
+                />
+              )}
+            </div>
+          </section>
+
+          {/* Skills Comparison Table */}
+          <section className="mx-auto px-2 md:px-6 mt-16">
+            <h3 className="font-bold text-2xl text-gray-900 mb-6">
+              University Skills
+            </h3>
+            <div className="flex flex-col gap-y-5">
+              {store?.certificationsRecommended && (
+                <GenerateCard
+                  objName="Certifications Recommended"
+                  data={store?.certificationsRecommended}
+                  color={COLORS.yellow}
+                />
+              )}
+              {store?.technologyStack && (
+                <GenerateCard
+                  objName="Technology Stack"
+                  data={store?.technologyStack}
+                  color={COLORS.pink}
+                />
+              )}
+              {store?.industryInsights && (
+                <GenerateCard
+                  objName="Industry Insights"
+                  data={store?.industryInsights}
+                  color={COLORS.green}
+                />
+              )}
+              {store?.programOverview && (
+                <GenerateCard
+                  objName="Program Overview"
+                  data={store?.programOverview}
+                  color={COLORS.purple}
+                />
+              )}
+            </div>
+          </section>
+        </>
+      )}
+    </Container>
   );
 }
 
