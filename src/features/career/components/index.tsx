@@ -325,8 +325,13 @@ function Career() {
                       <div className="font-semibold text-gray-900 pt-1">
                         {s?.skillName}
                       </div>
-                      <div className="text-xs text-gray-500 leading-snug">
+                      <div className="text-sm text-gray-500 leading-snug">
                         {s?.description}
+                      </div>
+                      <div className="text-xs text-gray-500 leading-snug pt-3">
+                        <b>Market Relevance:</b> {s?.marketRelevance} <br />
+                        <b>Level: </b>
+                        {s?.importanceLevel}
                       </div>
                     </div>
                   </div>
@@ -360,8 +365,13 @@ function Career() {
                       <div className="font-semibold text-gray-900 pt-1">
                         {s?.skillName}
                       </div>
-                      <div className="text-xs text-gray-500 leading-snug">
+                      <div className="text-sm text-gray-500 leading-snug">
                         {s?.description}
+                      </div>
+                      <div className="text-xs text-gray-500 leading-snug pt-3">
+                        <b>Industry Usage: </b>
+                        {s?.industryUsage} <br />
+                        <b>Practical Application:</b> {s?.practicalApplication}
                       </div>
                     </div>
                   </div>
@@ -398,8 +408,13 @@ function Career() {
                       <div className="font-semibold text-gray-900 pt-1">
                         {s?.skillName}
                       </div>
-                      <div className="text-xs text-gray-500 leading-snug">
+                      <div className="text-sm text-gray-500 leading-snug">
                         {s?.description}
+                      </div>
+                      <div className="text-xs text-gray-500 leading-snug pt-3">
+                        <b>Career Impact:</b> {s?.careerImpact} <br />
+                        <b>Specialization Area: </b>
+                        {s?.specializationArea}
                       </div>
                     </div>
                   </div>
