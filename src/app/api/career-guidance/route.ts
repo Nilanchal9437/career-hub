@@ -17,12 +17,13 @@ export async function POST(req: Request) {
       );
     }
 
-    // Updated prompt with explicit multiple entries requirement
+    // Updated prompt: enforce semester-wise skill breakdown
     const prompt = `
 You are an academic & career advisor.
 Return ONLY a valid JSON object (no markdown, no explanations, no text outside JSON).
-The JSON MUST strictly follow this structure and include ALL keys.
-⚠️ For all arrays (foundationSkills, licenseSkills, masterSkills, technologyStack, etc.), return AT LEAST 5 diverse items.
+⚠️ The JSON MUST strictly follow this schema and include ALL keys.
+⚠️ All arrays must return AT LEAST 5 diverse items.
+⚠️ foundationSkills, licenseSkills, and masterSkills MUST be organized semester-wise (semester1, semester2, etc.).
 
 {
   "success": true,
@@ -34,33 +35,22 @@ The JSON MUST strictly follow this structure and include ALL keys.
     "duration": "",
     "mainFocus": ""
   },
-  "foundationSkills": [
-    {
-      "skillName": "",
-      "description": "",
-      "importanceLevel": "",
-      "marketRelevance": ""
-    }
-    // At least 5 skills here
-  ],
-  "licenseSkills": [
-    {
-      "skillName": "",
-      "description": "",
-      "practicalApplication": "",
-      "industryUsage": ""
-    }
-    // At least 5
-  ],
-  "masterSkills": [
-    {
-      "skillName": "",
-      "description": "",
-      "specializationArea": "",
-      "careerImpact": ""
-    }
-    // At least 5
-  ],
+  "foundationSkills": {
+    "semester1": [],
+    "semester2": [],
+    "semester3": [],
+    "semester4": []
+  },
+  "licenseSkills": {
+    "semester5": [],
+    "semester6": [],
+    "semester7": [],
+    "semester8": []
+  },
+  "masterSkills": {
+    "semester9": [],
+    "semester10": []
+  },
   "technologyStack": [
     {
       "technologyName": "",
@@ -70,18 +60,11 @@ The JSON MUST strictly follow this structure and include ALL keys.
       "learningPriority": "",
       "moroccanMarketRelevance": ""
     }
-    // At least 5
   ],
   "learningRoadmap": {
-    "foundationPhase": [
-      // At least 5
-    ],
-    "intermediatePhase": [
-      // At least 5
-    ],
-    "advancedPhase": [
-      // At least 5
-    ]
+    "foundationPhase": [],
+    "intermediatePhase": [],
+    "advancedPhase": []
   },
   "careerOpportunities": [
     {
@@ -97,7 +80,6 @@ The JSON MUST strictly follow this structure and include ALL keys.
       "growthProspect": "",
       "companiesHiring": []
     }
-    // At least 5 jobs
   ],
   "skillsGapAnalysis": {
     "universityTeaching": {
@@ -148,11 +130,7 @@ The JSON MUST strictly follow this structure and include ALL keys.
     "generatedAt": "",
     "dataSource": "",
     "lastUpdated": "",
-    "version": "3.0",
-    "figmaReady": true,
-    "responseTime": 0,
     "tokens": 0,
-    "model": "gpt-5",
     "source": "AI academic-industry analysis",
     "hasMatchingData": false,
     "timestamp": ""
