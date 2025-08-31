@@ -7,6 +7,7 @@ import {
   GraduationCap,
   Cpu,
   BriefcaseBusiness,
+  BookMarked,
 } from "lucide-react";
 import useCareerGuidance from "@/features/career/api/get";
 import { getCookie } from "@/libs/Cookie";
@@ -251,7 +252,29 @@ const GenerateCard: React.FC<GenerateCardProps> = ({
   );
 
   if (Array.isArray(data)) {
-    return <>{data.map((item, idx) => renderObject(item, idx))}</>;
+    // Check if the first element is an object to decide rendering
+    if (data.length > 0 && typeof data[0] === "object" && data[0] !== null) {
+      return <>{data.map((item, idx) => renderObject(item, idx))}</>;
+    } else {
+      // Array of strings or primitives - simple map
+      return (
+        <div
+          className={`bg-white rounded-xl shadow-sm border-l-4 p-6 flex flex-col gap-2 border border-gray-100 ${color.border}`}
+        >
+          <div className="flex items-center gap-2 mb-2"> 
+            <span className={`font-semibold ${color.text} text-lg capitalize`}>
+              {formatName(objName)}
+            </span>
+          </div>
+
+          <ul className="list-disc ml-6 text-gray-700">
+            {data.map((item, idx) => (
+              <li key={idx}>{String(item)}</li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
   }
   if (typeof data === "object" && data !== null) {
     return renderObject(data);
@@ -311,28 +334,31 @@ function Career() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {store?.foundationSkills &&
-                Array.isArray(store?.foundationSkills) &&
-                store?.foundationSkills.length > 0 &&
-                store?.foundationSkills?.map((s: any, i: number) => (
-                  <div
-                    key={i}
-                    className="bg-white rounded-xl shadow-sm p-2 flex gap-3 items-start border border-gray-100 items-center"
-                  >
-                    <IconCircle color="bg-green-100">
-                      <CircleCheck className="text-green-500" />
-                    </IconCircle>
-                    <div>
-                      <div className="font-semibold text-gray-900 pt-1">
-                        {s?.skillName}
-                      </div>
-                      <div className="text-sm text-gray-500 leading-snug">
-                        {s?.description}
-                      </div>
-                      <div className="text-xs text-gray-500 leading-snug pt-3">
-                        <b>Market Relevance:</b> {s?.marketRelevance} <br />
-                        <b>Level: </b>
-                        {s?.importanceLevel}
-                      </div>
+                typeof store?.foundationSkills === "object" &&
+                Object.keys(store?.foundationSkills).map((semester: string) => (
+                  <div key={semester} className="mb-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3 capitalize">
+                      {semester.replace(/^semester/, "Semester ")}
+                    </h3>
+                    <div className="space-y-3">
+                      {Array.isArray(store?.foundationSkills[semester]) &&
+                        store?.foundationSkills[semester].map(
+                          (skill: string, i: number) => (
+                            <div
+                              key={i}
+                              className="bg-white rounded-xl shadow-sm p-2 flex gap-3 items-start border border-gray-100 items-center"
+                            >
+                              <IconCircle color="bg-green-100">
+                                <BookMarked className="text-green-500" />
+                              </IconCircle>
+                              <div>
+                                <div className="font-semibold text-gray-900 pt-1">
+                                  {skill}
+                                </div>
+                              </div>
+                            </div>
+                          )
+                        )}
                     </div>
                   </div>
                 ))}
@@ -351,28 +377,31 @@ function Career() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {store?.licenseSkills &&
-                Array.isArray(store?.licenseSkills) &&
-                store?.licenseSkills.length > 0 &&
-                store?.licenseSkills?.map((s: any, i: number) => (
-                  <div
-                    key={i}
-                    className="bg-white rounded-xl shadow-sm p-2 flex gap-3 items-start border border-gray-100 items-center"
-                  >
-                    <IconCircle color="bg-green-100">
-                      <CircleCheck className="text-green-500" />
-                    </IconCircle>
-                    <div>
-                      <div className="font-semibold text-gray-900 pt-1">
-                        {s?.skillName}
-                      </div>
-                      <div className="text-sm text-gray-500 leading-snug">
-                        {s?.description}
-                      </div>
-                      <div className="text-xs text-gray-500 leading-snug pt-3">
-                        <b>Industry Usage: </b>
-                        {s?.industryUsage} <br />
-                        <b>Practical Application:</b> {s?.practicalApplication}
-                      </div>
+                typeof store?.licenseSkills === "object" &&
+                Object.keys(store?.licenseSkills).map((semester: string) => (
+                  <div key={semester} className="mb-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3 capitalize">
+                      {semester.replace(/^semester/, "Semester ")}
+                    </h3>
+                    <div className="space-y-3">
+                      {Array.isArray(store?.licenseSkills[semester]) &&
+                        store?.licenseSkills[semester].map(
+                          (skill: string, i: number) => (
+                            <div
+                              key={i}
+                              className="bg-white rounded-xl shadow-sm p-2 flex gap-3 items-start border border-gray-100 items-center"
+                            >
+                              <IconCircle color="bg-green-100">
+                                <BookMarked className="text-green-500" />
+                              </IconCircle>
+                              <div>
+                                <div className="font-semibold text-gray-900 pt-1">
+                                  {skill}
+                                </div>
+                              </div>
+                            </div>
+                          )
+                        )}
                     </div>
                   </div>
                 ))}
@@ -394,31 +423,328 @@ function Career() {
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {store?.masterSkills &&
-                Array.isArray(store?.masterSkills) &&
-                store?.masterSkills.length > 0 &&
-                store?.masterSkills?.map((s: any, i: number) => (
-                  <div
-                    key={i}
-                    className="bg-white rounded-xl shadow-sm p-2 flex gap-3 items-start border border-gray-100 items-center"
-                  >
-                    <IconCircle color="bg-green-100">
-                      <CircleCheck className="text-green-500" />
-                    </IconCircle>
-                    <div>
-                      <div className="font-semibold text-gray-900 pt-1">
-                        {s?.skillName}
-                      </div>
-                      <div className="text-sm text-gray-500 leading-snug">
-                        {s?.description}
-                      </div>
-                      <div className="text-xs text-gray-500 leading-snug pt-3">
-                        <b>Career Impact:</b> {s?.careerImpact} <br />
-                        <b>Specialization Area: </b>
-                        {s?.specializationArea}
-                      </div>
+                typeof store?.masterSkills === "object" &&
+                Object.keys(store?.masterSkills).map((semester: string) => (
+                  <div key={semester} className="mb-6">
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3 capitalize">
+                      {semester.replace(/^semester/, "Semester ")}
+                    </h3>
+                    <div className="space-y-3">
+                      {Array.isArray(store?.masterSkills[semester]) &&
+                        store?.masterSkills[semester].map(
+                          (skill: string, i: number) => (
+                            <div
+                              key={i}
+                              className="bg-white rounded-xl shadow-sm p-2 flex gap-3 items-start border border-gray-100 items-center"
+                            >
+                              <IconCircle color="bg-green-100">
+                                <BookMarked className="text-green-500" />
+                              </IconCircle>
+                              <div>
+                                <div className="font-semibold text-gray-900 pt-1">
+                                  {skill}
+                                </div>
+                              </div>
+                            </div>
+                          )
+                        )}
                     </div>
                   </div>
                 ))}
+            </div>
+          </section>
+
+          {/* Moroccan Job Market */}
+          <section className="mx-auto px-2 md:px-6 mt-14">
+            <div className="flex items-center gap-3 mb-6">
+              <IconCircle color="bg-green-100">
+                <BriefcaseBusiness className="text-green-500" />
+              </IconCircle>
+              <h2 className="font-bold text-2xl text-gray-900">
+                Moroccan Job Market
+              </h2>
+            </div>
+            <p className="text-gray-500 mb-6 ml-1">
+              Insights into the local job market, opportunities, and trends.
+            </p>
+            
+            {/* Market Overview and Key Industries */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div className="bg-green-50 rounded-xl p-6 shadow-sm border border-green-100">
+                <h3 className="font-semibold text-lg text-green-900 mb-3">
+                  Market Overview
+                </h3>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-green-800 font-medium">Overall Demand:</span>
+                    <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                      store?.moroccanJobMarket?.overallDemand === 'High' 
+                        ? 'bg-green-200 text-green-800' 
+                        : 'bg-yellow-200 text-yellow-800'
+                    }`}>
+                      {store?.moroccanJobMarket?.overallDemand}
+                    </span>
+                  </div>
+                  <div className="text-green-800">
+                    <span className="font-medium">Trend:</span>
+                    <p className="text-sm mt-1">{store?.moroccanJobMarket?.trendAnalysis}</p>
+                  </div>
+                  <div className="text-green-800">
+                    <span className="font-medium">Outlook:</span>
+                    <p className="text-sm mt-1">{store?.moroccanJobMarket?.futureOutlook}</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-blue-50 rounded-xl p-6 shadow-sm border border-blue-100">
+                <h3 className="font-semibold text-lg text-blue-900 mb-3">
+                  Key Industries
+                </h3>
+                <div className="grid grid-cols-1 gap-2">
+                  {store?.moroccanJobMarket?.keyIndustries &&
+                    Array.isArray(store?.moroccanJobMarket?.keyIndustries) &&
+                    store?.moroccanJobMarket?.keyIndustries.map((industry: string, index: number) => (
+                      <div key={index} className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        <span className="text-blue-800 text-sm">{industry}</span>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            </div>
+            
+            {/* Top Companies and Location Hotspots */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div className="bg-yellow-50 rounded-xl p-6 shadow-sm border border-yellow-100">
+                <h3 className="font-semibold text-lg text-yellow-900 mb-3">
+                  Top Companies
+                </h3>
+                <div className="space-y-2">
+                  {store?.moroccanJobMarket?.topCompanies &&
+                    Array.isArray(store?.moroccanJobMarket?.topCompanies) &&
+                    store?.moroccanJobMarket?.topCompanies.map((company: string, index: number) => (
+                      <div key={index} className="flex items-center gap-2">
+                        <CircleCheck className="text-yellow-600 text-sm" />
+                        <span className="text-yellow-800 text-sm">{company}</span>
+                      </div>
+                    ))}
+                </div>
+              </div>
+              
+              <div className="bg-purple-50 rounded-xl p-6 shadow-sm border border-purple-100">
+                <h3 className="font-semibold text-lg text-purple-900 mb-3">
+                  Location Hotspots
+                </h3>
+                <div className="space-y-2">
+                  {store?.moroccanJobMarket?.locationHotspots &&
+                    Array.isArray(store?.moroccanJobMarket?.locationHotspots) &&
+                    store?.moroccanJobMarket?.locationHotspots.map((location: string, index: number) => (
+                      <div key={index} className="flex items-center gap-2">
+                        <CircleCheck className="text-purple-600 text-sm" />
+                        <span className="text-purple-800 text-sm">{location}</span>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            </div>
+            
+            {/* Salary Ranges */}
+            {store?.moroccanJobMarket?.averageSalaryRanges && (
+              <div className="bg-indigo-50 rounded-xl p-6 shadow-sm border border-indigo-100">
+                <h3 className="font-semibold text-lg text-indigo-900 mb-3">
+                  Average Salary Ranges
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-indigo-700">
+                      {store?.moroccanJobMarket?.averageSalaryRanges?.freshGraduate}
+                    </div>
+                    <div className="text-indigo-600 text-sm">Fresh Graduate</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-indigo-700">
+                      {store?.moroccanJobMarket?.averageSalaryRanges?.midLevel}
+                    </div>
+                    <div className="text-indigo-600 text-sm">Mid Level</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-indigo-700">
+                      {store?.moroccanJobMarket?.averageSalaryRanges?.senior}
+                    </div>
+                    <div className="text-indigo-600 text-sm">Senior Level</div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </section>
+
+          {/* Technology Stack */}
+          <section className="mx-auto px-2 md:px-6 mt-14">
+            <div className="flex items-center gap-3 mb-6">
+              <IconCircle color="bg-blue-100">
+                <Cpu className="text-blue-500" />
+              </IconCircle>
+              <h2 className="font-bold text-2xl text-gray-900">
+                Technology Stack
+              </h2>
+            </div>
+            <p className="text-gray-500 mb-6 ml-1">
+              Essential technologies and their market relevance for your career path.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {store?.technologyStack &&
+                Array.isArray(store?.technologyStack) &&
+                store?.technologyStack.map((tech: any, i: number) => (
+                  <div
+                    key={i}
+                    className="bg-white rounded-xl shadow-sm p-4 border border-gray-100 hover:shadow-md transition-shadow"
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      <IconCircle color="bg-blue-100">
+                        <Cpu className="text-blue-500" />
+                      </IconCircle>
+                      <div>
+                        <h3 className="font-semibold text-gray-900">
+                          {tech?.technologyName}
+                        </h3>
+                        <p className="text-sm text-gray-500">{tech?.category}</p>
+                      </div>
+                    </div>
+                    <p className="text-gray-700 text-sm mb-3">{tech?.description}</p>
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        tech?.marketDemand === 'High' 
+                          ? 'bg-green-100 text-green-800' 
+                          : 'bg-yellow-100 text-yellow-800'
+                      }`}>
+                        {tech?.marketDemand} Demand
+                      </span>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        tech?.learningPriority === 'High' 
+                          ? 'bg-blue-100 text-blue-800' 
+                          : 'bg-gray-100 text-gray-800'
+                      }`}>
+                        {tech?.learningPriority} Priority
+                      </span>
+                    </div>
+                    <div className="text-xs text-gray-600 bg-gray-50 p-2 rounded">
+                      <span className="font-medium">Moroccan Market:</span> {tech?.moroccanMarketRelevance}
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </section>
+
+          {/* Next Steps & Actions */}
+          <section className="mx-auto px-2 md:px-6 mt-14">
+            <div className="flex items-center gap-3 mb-6">
+              <IconCircle color="bg-purple-100">
+                <GraduationCap className="text-purple-500" />
+              </IconCircle>
+              <h2 className="font-bold text-2xl text-gray-900">
+                Next Steps & Actions
+              </h2>
+            </div>
+            <p className="text-gray-500 mb-6 ml-1">
+              Actionable steps to advance your career and build your skills.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {store?.nextStepsAction &&
+                Array.isArray(store?.nextStepsAction) &&
+                store?.nextStepsAction.map((action: string, i: number) => (
+                  <div
+                    key={i}
+                    className="bg-white rounded-xl shadow-sm p-4 border border-gray-100 hover:shadow-md transition-shadow"
+                  >
+                    <div className="flex items-center gap-3">
+                      <IconCircle color="bg-purple-100">
+                        <CircleCheck className="text-purple-500" />
+                      </IconCircle>
+                      <span className="font-medium text-gray-900">{action}</span>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </section>
+
+          {/* Personalized Advice */}
+          <section className="mx-auto px-2 md:px-6 mt-14">
+            <div className="flex items-center gap-3 mb-6">
+              <IconCircle color="bg-pink-100">
+                <Book className="text-pink-500" />
+              </IconCircle>
+              <h2 className="font-bold text-2xl text-gray-900">
+                Personalized Advice
+              </h2>
+            </div>
+            <p className="text-gray-500 mb-6 ml-1">
+              Tailored recommendations to help you leverage your strengths and improve areas of growth.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-pink-50 rounded-xl p-6 shadow-sm border border-pink-100">
+                <h3 className="font-semibold text-lg text-pink-900 mb-3">
+                  Strengths to Leverage
+                </h3>
+                <ul className="space-y-2">
+                  {store?.personalizedAdvice?.strengthsToLeverage &&
+                    Array.isArray(store?.personalizedAdvice?.strengthsToLeverage) &&
+                    store?.personalizedAdvice?.strengthsToLeverage.map((strength: string, index: number) => (
+                      <li key={index} className="text-pink-800 flex items-center gap-2">
+                        <CircleCheck className="text-pink-500 text-sm" />
+                        <span className="text-sm">{strength}</span>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+              <div className="bg-orange-50 rounded-xl p-6 shadow-sm border border-orange-100">
+                <h3 className="font-semibold text-lg text-orange-900 mb-3">
+                  Areas to Improve
+                </h3>
+                <ul className="space-y-2">
+                  {store?.personalizedAdvice?.areasToImprove &&
+                    Array.isArray(store?.personalizedAdvice?.areasToImprove) &&
+                    store?.personalizedAdvice?.areasToImprove.map((area: string, index: number) => (
+                      <li key={index} className="text-orange-800 flex items-center gap-2">
+                        <CircleCheck className="text-orange-500 text-sm" />
+                        <span className="text-sm">{area}</span>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            </div>
+            
+            {/* Career Path Options and Networking Advice */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+              <div className="bg-blue-50 rounded-xl p-6 shadow-sm border border-blue-100">
+                <h3 className="font-semibold text-lg text-blue-900 mb-3">
+                  Career Path Options
+                </h3>
+                <div className="space-y-2">
+                  {store?.personalizedAdvice?.careerPathOptions &&
+                    Array.isArray(store?.personalizedAdvice?.careerPathOptions) &&
+                    store?.personalizedAdvice?.careerPathOptions.map((path: string, index: number) => (
+                      <div key={index} className="flex items-center gap-2">
+                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        <span className="text-blue-800 text-sm">{path}</span>
+                      </div>
+                    ))}
+                </div>
+              </div>
+              <div className="bg-green-50 rounded-xl p-6 shadow-sm border border-green-100">
+                <h3 className="font-semibold text-lg text-green-900 mb-3">
+                  Networking Advice
+                </h3>
+                <ul className="space-y-2">
+                  {store?.personalizedAdvice?.networkingAdvice &&
+                    Array.isArray(store?.personalizedAdvice?.networkingAdvice) &&
+                    store?.personalizedAdvice?.networkingAdvice.map((advice: string, index: number) => (
+                      <li key={index} className="text-green-800 flex items-center gap-2">
+                        <CircleCheck className="text-green-500 text-sm" />
+                        <span className="text-sm">{advice}</span>
+                      </li>
+                    ))}
+                </ul>
+              </div>
             </div>
           </section>
 
