@@ -19,12 +19,12 @@ function Footer() {
           {/* Logo & Description */}
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <Image height={30} width={30} src="/logo.png" alt="icon" />
+              <Image height={30} width={30} src="/logo.png" alt="icône" />
               <span className="font-bold text-lg text-white">CareerHub</span>
             </div>
             <p className="text-gray-400 text-sm mb-4">
-              Your comprehensive platform for career development, education, and
-              professional growth.
+              Votre plateforme complète pour le développement de carrière,
+              l’éducation et la croissance professionnelle.
             </p>
             <div className="flex gap-3 mt-2">
               <Link href="#" aria-label="Facebook">
@@ -37,7 +37,7 @@ function Footer() {
                   <Twitter />
                 </span>
               </Link>
-              <Link href="#" aria-label="linkedin">
+              <Link href="#" aria-label="Linkedin">
                 <span className="text-xl hover:text-white">
                   <Linkedin />
                 </span>
@@ -51,44 +51,39 @@ function Footer() {
           </div>
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold mb-3 text-white">Our Services</h4>
+            <h4 className="font-semibold mb-3 text-white">Nos Services</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link href="/" className="hover:underline">
-                  Home
+                  Accueil
                 </Link>
               </li>
               <li>
                 <Link href="/career-guidance" className="hover:underline">
-                  Jobs
+                  Emplois
                 </Link>
               </li>
               <li>
                 <Link href="/career-guidance" className="hover:underline">
-                  Career Guidance
+                  Orientation professionnelle
                 </Link>
               </li>
               <li>
                 <Link href="/course" className="hover:underline">
-                Course
+                  Cours
                 </Link>
-              </li>
-              <li>
-                <Link href="/career" className="hover:underline">
-                  Career
-                </Link>
-              </li>
+              </li> 
             </ul>
           </div>
           {/* Contact Us */}
           <div>
-            <h4 className="font-semibold mb-3 text-white">Contact Us</h4>
+            <h4 className="font-semibold mb-3 text-white">Contactez-nous</h4>
             <ul className="space-y-2 text-sm">
               <li className="flex items-center gap-2">
                 <span className="text-green-400">
                   <MapPin className="h-4 w-4" />
                 </span>
-                123 Career Street, Employment City
+                123 Rue de la Carrière, Ville de l’Emploi
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-green-400">
@@ -106,7 +101,7 @@ function Footer() {
           </div>
         </div>
         <div className="text-center text-gray-500 text-xs mt-8 pt-8 border-t border-gray-500">
-          © {new Date().getFullYear()} CareerHub. All rights reserved.
+          © {new Date().getFullYear()} CareerHub. Tous droits réservés.
         </div>
       </Container>
     </footer>

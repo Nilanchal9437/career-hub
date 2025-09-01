@@ -104,34 +104,33 @@ function CareerGuidance() {
 
   return (
     <div className="bg-[#f8fafc] min-h-screen w-full md:pb-10 pt-2 flex flex-col items-center">
-      {/* Hero Section */}
+      {/* Section Hero */}
       <div className="w-full max-w-3xl mx-auto text-center mt-10 md:mt-16 px-4">
         <h1 className="font-extrabold text-2xl md:text-4xl text-gray-900 mb-3 flex items-center justify-center">
           <GraduationCap className="h-20 w-20" />
-          <span>Improve Your Skills & Get Career Guidance</span>
+          <span>Améliorez vos compétences & recevez une orientation de carrière</span>
         </h1>
         <p className="text-gray-500 text-base md:text-lg mb-8">
-          Choose your career path and see the essential skills, jobs, and expert
-          guidance to grow fast — no login needed.
+          Choisissez votre parcours et découvrez les compétences essentielles, les métiers et les conseils d’experts pour évoluer rapidement — sans connexion requise.
         </p>
       </div>
 
-      {/* Form Card */}
+      {/* Carte du formulaire */}
       <div className="w-full max-w-2xl bg-white rounded-xl shadow p-6 md:p-8 mx-auto mb-8 flex flex-col gap-6">
-        {/* University Select */}
+        {/* Sélection Université */}
         <div>
           <label className="block font-semibold text-gray-800 mb-1">
-            Select University
+            Sélectionnez une université
           </label>
           <select
-            className="w-full border border-gray-200 rounded-md px-4 py-2 text-base  text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-200 mb-1"
+            className="w-full border border-gray-200 rounded-md px-4 py-2 text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-200 mb-1"
             value={selectedUniversity}
             onChange={(e) => {
               setSelectedUniversity(e.target.value);
               setSelectedCourse("");
             }}
           >
-            <option value="">Choose your university</option>
+            <option value="">Choisissez votre université</option>
             {universityOptions.map((u) => (
               <option key={u.value} value={u.value}>
                 {u.label}
@@ -139,32 +138,32 @@ function CareerGuidance() {
             ))}
           </select>
           <div className="text-gray-400 text-sm ml-1">
-            Select the university
+            Sélectionnez l’université
           </div>
         </div>
-        {/* Course Select */}
+        {/* Sélection Cours */}
         <div>
           <label className="block font-semibold text-gray-800 mb-1">
-            Select Course
+            Sélectionnez un cours
           </label>
           <select
-            className="w-full border border-gray-200  text-gray-800 rounded-md px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-green-200 mb-1"
+            className="w-full border border-gray-200 text-gray-800 rounded-md px-4 py-2 text-base focus:outline-none focus:ring-2 focus:ring-green-200 mb-1"
             value={selectedCourse}
             onChange={(e) => setSelectedCourse(e.target.value)}
             disabled={!selectedUniversity}
           >
-            <option value="">Choose your course</option>
+            <option value="">Choisissez votre cours</option>
             {courseOptions.map((c) => (
               <option key={c.value} value={c.value}>
                 {c.label}
               </option>
             ))}
           </select>
-          <div className="text-gray-400 text-sm ml-1">Select the course</div>
+          <div className="text-gray-400 text-sm ml-1">Sélectionnez le cours</div>
         </div>
       </div>
 
-      {/* Start Button */}
+      {/* Boutons */}
       <div className="w-full flex justify-center gap-2">
         <button
           className="bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-3 rounded-md text-base flex items-center gap-2 transition shadow"
@@ -174,7 +173,7 @@ function CareerGuidance() {
           }}
         >
           <GraduationCap />
-          Start Your Journey
+          Commencez votre parcours
         </button>
         <button
           className="bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-3 rounded-md text-base flex items-center gap-2 transition shadow"
@@ -184,7 +183,7 @@ function CareerGuidance() {
           }}
         >
           <BookCopy />
-          Start Your Career
+          Démarrez votre carrière
         </button>
       </div>
     </div>

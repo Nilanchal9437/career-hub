@@ -20,14 +20,14 @@ function NavBar() {
           <Link href="/" className="hover:text-green-600 transition">
             Home
           </Link>
-          <Link href="/career-guidance" className="hover:text-green-600 transition">
+          <Link
+            href="/career-guidance"
+            className="hover:text-green-600 transition"
+          >
             Job
           </Link>
           <Link href="/course" className="hover:text-green-600 transition">
             Course
-          </Link>
-          <Link href="/career" className="hover:text-green-600 transition">
-            Career
           </Link>
         </nav>
         <div className="hidden md:flex gap-2 items-center">
@@ -82,14 +82,7 @@ function NavBar() {
             >
               Course
             </Link>
-            <Link
-              href="/career"
-              className="w-full text-center py-2 hover:bg-gray-100"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Career
-            </Link>
-            <div className="flex flex-col gap-2 w-full px-4 mt-2"> 
+            <div className="flex flex-col gap-2 w-full px-4 mt-2">
               <Link
                 href="/career-guidance"
                 className="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-md text-sm transition w-full text-center"
