@@ -17,13 +17,14 @@ export async function POST(req: Request) {
       );
     }
 
-    // Updated prompt: enforce semester-wise skill breakdown
+    // Updated prompt: enforce French content but English keys
     const prompt = `
 You are an academic & career advisor.
 Return ONLY a valid JSON object (no markdown, no explanations, no text outside JSON).
 ⚠️ The JSON MUST strictly follow this schema and include ALL keys.
 ⚠️ All arrays must return AT LEAST 5 diverse items.
 ⚠️ foundationSkills, licenseSkills, and masterSkills MUST be organized semester-wise (semester1, semester2, etc.).
+⚠️ All JSON keys MUST stay in English, but all values (descriptions, text, strings) MUST be written in French.
 
 {
   "success": true,
@@ -37,18 +38,16 @@ Return ONLY a valid JSON object (no markdown, no explanations, no text outside J
   },
   "foundationSkills": {
     "semester1": [],
-    "semester2": [],
-   
+    "semester2": []
   },
   "licenseSkills": {
-   "semester3": [],
+    "semester3": [],
     "semester4": [],
     "semester5": [],
-    "semester6": [],
-    
+    "semester6": []
   },
   "masterSkills": {
-  "semester7": [],
+    "semester7": [],
     "semester8": [],
     "semester9": [],
     "semester10": []
