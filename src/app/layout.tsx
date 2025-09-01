@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Career Hub",
   description:
-    "CareerHub helped me find both a programming bootcamp and a job in the tech industry within months. The career guidance was invaluable.",
+    "CareerHub m’a aidé à trouver à la fois un bootcamp de programmation et un emploi dans le secteur technologique en quelques mois. Les conseils en orientation professionnelle ont été inestimables.",
 };
 
 export default function RootLayout({
