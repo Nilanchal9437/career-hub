@@ -138,7 +138,7 @@ export default function Jobs() {
   return (
     <Container className="mb-10">
       {/* Title Section */}
-      <section className="pt-8 md:pt-12">
+      {/* <section className="pt-8 md:pt-12">
         <div className="flex items-center gap-3 mb-2">
           <span className="inline-flex items-center justify-center rounded-full bg-green-100 w-10 h-10">
             <Laptop className="text-green-500" />
@@ -151,7 +151,6 @@ export default function Jobs() {
           Real job openings for developers and tech professionals — no login
           required.
         </p>
-        {/* Search & Filters */}
         <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-4 flex flex-col md:flex-row gap-4 md:gap-6 mb-8">
           <div className="flex-1 min-w-[150px]">
             <label className="block text-xs font-semibold text-gray-700 mb-1">
@@ -198,7 +197,6 @@ export default function Jobs() {
               <option value={getRepeatIntervalCode(1)}>Last 24 hours</option>
               <option value={getRepeatIntervalCode(7)}>Last Week</option>
               <option value={getRepeatIntervalCode(30)}>Last Month</option>
-              {/* <option value={getRepeatIntervalCode(365)}>Last Year</option> */}
             </select>
           </div>
           <div className="flex-1 min-w-[150px]">
@@ -228,7 +226,7 @@ export default function Jobs() {
             </button>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Job Listings */}
       <section className="flex flex-col gap-6">

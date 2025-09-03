@@ -261,7 +261,7 @@ const GenerateCard: React.FC<GenerateCardProps> = ({
         <div
           className={`bg-white rounded-xl shadow-sm border-l-4 p-6 flex flex-col gap-2 border border-gray-100 ${color.border}`}
         >
-          <div className="flex items-center gap-2 mb-2"> 
+          <div className="flex items-center gap-2 mb-2">
             <span className={`font-semibold ${color.text} text-lg capitalize`}>
               {formatName(objName)}
             </span>
@@ -328,9 +328,7 @@ function Career() {
               <IconCircle color="bg-green-100">
                 <Book className="text-green-500" />
               </IconCircle>
-              <h2 className="font-bold text-2xl text-gray-900">
-                Tronc Commun (Foundation Year)
-              </h2>
+              <h2 className="font-bold text-2xl text-gray-900">Tronc Commun</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {store?.foundationSkills &&
@@ -371,9 +369,7 @@ function Career() {
               <IconCircle color="bg-blue-100">
                 <GraduationCap className="text-blue-500" />
               </IconCircle>
-              <h2 className="font-bold text-2xl text-gray-900">
-                Licence (Bachelor's Level)
-              </h2>
+              <h2 className="font-bold text-2xl text-gray-900">Licence</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {store?.licenseSkills &&
@@ -414,12 +410,11 @@ function Career() {
               <IconCircle color="bg-purple-100">
                 <Cpu className="text-purple-500" />
               </IconCircle>
-              <h2 className="font-bold text-2xl text-gray-900">
-                Masters Level
-              </h2>
+              <h2 className="font-bold text-2xl text-gray-900">Master Level</h2>
             </div>
             <p className="text-gray-500 mb-6 ml-1">
-              Specialize in high-impact skills. Future proof skills.
+              Spécialisez-vous dans des compétences à fort impact. Des
+              compétences à l&absp;épreuve du futur.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {store?.masterSkills &&
@@ -461,117 +456,144 @@ function Career() {
                 <BriefcaseBusiness className="text-green-500" />
               </IconCircle>
               <h2 className="font-bold text-2xl text-gray-900">
-                Moroccan Job Market
+                {"Marché de l’emploi marocain"}
               </h2>
             </div>
             <p className="text-gray-500 mb-6 ml-1">
-              Insights into the local job market, opportunities, and trends.
+              {
+                "Aperçus du marché de l’emploi local, des opportunités et des tendances."
+              }
             </p>
-            
+
             {/* Market Overview and Key Industries */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div className="bg-green-50 rounded-xl p-6 shadow-sm border border-green-100">
                 <h3 className="font-semibold text-lg text-green-900 mb-3">
-                  Market Overview
+                  {"Aperçu du marché"}
                 </h3>
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-green-800 font-medium">Overall Demand:</span>
-                    <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                      store?.moroccanJobMarket?.overallDemand === 'High' 
-                        ? 'bg-green-200 text-green-800' 
-                        : 'bg-yellow-200 text-yellow-800'
-                    }`}>
+                    <span className="text-green-800 font-medium">
+                      Demande Globale:
+                    </span>
+                    <span
+                      className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                        store?.moroccanJobMarket?.overallDemand === "High"
+                          ? "bg-green-200 text-green-800"
+                          : "bg-yellow-200 text-yellow-800"
+                      }`}
+                    >
                       {store?.moroccanJobMarket?.overallDemand}
                     </span>
                   </div>
                   <div className="text-green-800">
                     <span className="font-medium">Trend:</span>
-                    <p className="text-sm mt-1">{store?.moroccanJobMarket?.trendAnalysis}</p>
+                    <p className="text-sm mt-1">
+                      {store?.moroccanJobMarket?.trendAnalysis}
+                    </p>
                   </div>
                   <div className="text-green-800">
                     <span className="font-medium">Outlook:</span>
-                    <p className="text-sm mt-1">{store?.moroccanJobMarket?.futureOutlook}</p>
+                    <p className="text-sm mt-1">
+                      {store?.moroccanJobMarket?.futureOutlook}
+                    </p>
                   </div>
                 </div>
               </div>
-              
+
               <div className="bg-blue-50 rounded-xl p-6 shadow-sm border border-blue-100">
                 <h3 className="font-semibold text-lg text-blue-900 mb-3">
-                  Key Industries
+                  Secteurs clés
                 </h3>
                 <div className="grid grid-cols-1 gap-2">
                   {store?.moroccanJobMarket?.keyIndustries &&
                     Array.isArray(store?.moroccanJobMarket?.keyIndustries) &&
-                    store?.moroccanJobMarket?.keyIndustries.map((industry: string, index: number) => (
-                      <div key={index} className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span className="text-blue-800 text-sm">{industry}</span>
-                      </div>
-                    ))}
+                    store?.moroccanJobMarket?.keyIndustries.map(
+                      (industry: string, index: number) => (
+                        <div key={index} className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                          <span className="text-blue-800 text-sm">
+                            {industry}
+                          </span>
+                        </div>
+                      )
+                    )}
                 </div>
               </div>
             </div>
-            
+
             {/* Top Companies and Location Hotspots */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div className="bg-yellow-50 rounded-xl p-6 shadow-sm border border-yellow-100">
                 <h3 className="font-semibold text-lg text-yellow-900 mb-3">
-                  Top Companies
+                  Entreprises principales
                 </h3>
                 <div className="space-y-2">
                   {store?.moroccanJobMarket?.topCompanies &&
                     Array.isArray(store?.moroccanJobMarket?.topCompanies) &&
-                    store?.moroccanJobMarket?.topCompanies.map((company: string, index: number) => (
-                      <div key={index} className="flex items-center gap-2">
-                        <CircleCheck className="text-yellow-600 text-sm" />
-                        <span className="text-yellow-800 text-sm">{company}</span>
-                      </div>
-                    ))}
+                    store?.moroccanJobMarket?.topCompanies.map(
+                      (company: string, index: number) => (
+                        <div key={index} className="flex items-center gap-2">
+                          <CircleCheck className="text-yellow-600 text-sm" />
+                          <span className="text-yellow-800 text-sm">
+                            {company}
+                          </span>
+                        </div>
+                      )
+                    )}
                 </div>
               </div>
-              
+
               <div className="bg-purple-50 rounded-xl p-6 shadow-sm border border-purple-100">
                 <h3 className="font-semibold text-lg text-purple-900 mb-3">
-                  Location Hotspots
+                  Lieux stratégiques
                 </h3>
                 <div className="space-y-2">
                   {store?.moroccanJobMarket?.locationHotspots &&
                     Array.isArray(store?.moroccanJobMarket?.locationHotspots) &&
-                    store?.moroccanJobMarket?.locationHotspots.map((location: string, index: number) => (
-                      <div key={index} className="flex items-center gap-2">
-                        <CircleCheck className="text-purple-600 text-sm" />
-                        <span className="text-purple-800 text-sm">{location}</span>
-                      </div>
-                    ))}
+                    store?.moroccanJobMarket?.locationHotspots.map(
+                      (location: string, index: number) => (
+                        <div key={index} className="flex items-center gap-2">
+                          <CircleCheck className="text-purple-600 text-sm" />
+                          <span className="text-purple-800 text-sm">
+                            {location}
+                          </span>
+                        </div>
+                      )
+                    )}
                 </div>
               </div>
             </div>
-            
+
             {/* Salary Ranges */}
             {store?.moroccanJobMarket?.averageSalaryRanges && (
               <div className="bg-indigo-50 rounded-xl p-6 shadow-sm border border-indigo-100">
                 <h3 className="font-semibold text-lg text-indigo-900 mb-3">
-                  Average Salary Ranges
+                  Fourchettes de salaires moyens
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-indigo-700">
-                      {store?.moroccanJobMarket?.averageSalaryRanges?.freshGraduate}
+                      {
+                        store?.moroccanJobMarket?.averageSalaryRanges
+                          ?.freshGraduate
+                      }
                     </div>
-                    <div className="text-indigo-600 text-sm">Fresh Graduate</div>
+                    <div className="text-indigo-600 text-sm">Jeune diplômé</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-indigo-700">
                       {store?.moroccanJobMarket?.averageSalaryRanges?.midLevel}
                     </div>
-                    <div className="text-indigo-600 text-sm">Mid Level</div>
+                    <div className="text-indigo-600 text-sm">
+                      Niveau intermédiaire
+                    </div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-indigo-700">
                       {store?.moroccanJobMarket?.averageSalaryRanges?.senior}
                     </div>
-                    <div className="text-indigo-600 text-sm">Senior Level</div>
+                    <div className="text-indigo-600 text-sm">Niveau senior</div>
                   </div>
                 </div>
               </div>
@@ -585,11 +607,12 @@ function Career() {
                 <Cpu className="text-blue-500" />
               </IconCircle>
               <h2 className="font-bold text-2xl text-gray-900">
-                Technology Stack
+                Pile technologique
               </h2>
             </div>
             <p className="text-gray-500 mb-6 ml-1">
-              Essential technologies and their market relevance for your career path.
+              Technologies essentielles et leur pertinence sur le marché pour
+              votre parcours professionnel.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {store?.technologyStack &&
@@ -607,28 +630,37 @@ function Career() {
                         <h3 className="font-semibold text-gray-900">
                           {tech?.technologyName}
                         </h3>
-                        <p className="text-sm text-gray-500">{tech?.category}</p>
+                        <p className="text-sm text-gray-500">
+                          {tech?.category}
+                        </p>
                       </div>
                     </div>
-                    <p className="text-gray-700 text-sm mb-3">{tech?.description}</p>
+                    <p className="text-gray-700 text-sm mb-3">
+                      {tech?.description}
+                    </p>
                     <div className="flex flex-wrap gap-2 mb-3">
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        tech?.marketDemand === 'High' 
-                          ? 'bg-green-100 text-green-800' 
-                          : 'bg-yellow-100 text-yellow-800'
-                      }`}>
+                      <span
+                        className={`px-2 py-1 rounded-full text-xs font-medium ${
+                          tech?.marketDemand === "High"
+                            ? "bg-green-100 text-green-800"
+                            : "bg-yellow-100 text-yellow-800"
+                        }`}
+                      >
                         {tech?.marketDemand} Demand
                       </span>
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        tech?.learningPriority === 'High' 
-                          ? 'bg-blue-100 text-blue-800' 
-                          : 'bg-gray-100 text-gray-800'
-                      }`}>
+                      <span
+                        className={`px-2 py-1 rounded-full text-xs font-medium ${
+                          tech?.learningPriority === "High"
+                            ? "bg-blue-100 text-blue-800"
+                            : "bg-gray-100 text-gray-800"
+                        }`}
+                      >
                         {tech?.learningPriority} Priority
                       </span>
                     </div>
                     <div className="text-xs text-gray-600 bg-gray-50 p-2 rounded">
-                      <span className="font-medium">Moroccan Market:</span> {tech?.moroccanMarketRelevance}
+                      <span className="font-medium">Marché marocain:</span>{" "}
+                      {tech?.moroccanMarketRelevance}
                     </div>
                   </div>
                 ))}
@@ -642,11 +674,12 @@ function Career() {
                 <GraduationCap className="text-purple-500" />
               </IconCircle>
               <h2 className="font-bold text-2xl text-gray-900">
-                Next Steps & Actions
+                Prochaines étapes et actions
               </h2>
             </div>
             <p className="text-gray-500 mb-6 ml-1">
-              Actionable steps to advance your career and build your skills.
+              Mesures concrètes pour faire progresser votre carrière et
+              développer vos compétences.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {store?.nextStepsAction &&
@@ -660,7 +693,9 @@ function Career() {
                       <IconCircle color="bg-purple-100">
                         <CircleCheck className="text-purple-500" />
                       </IconCircle>
-                      <span className="font-medium text-gray-900">{action}</span>
+                      <span className="font-medium text-gray-900">
+                        {action}
+                      </span>
                     </div>
                   </div>
                 ))}
@@ -674,75 +709,99 @@ function Career() {
                 <Book className="text-pink-500" />
               </IconCircle>
               <h2 className="font-bold text-2xl text-gray-900">
-                Personalized Advice
+                Conseils personnalisés
               </h2>
             </div>
             <p className="text-gray-500 mb-6 ml-1">
-              Tailored recommendations to help you leverage your strengths and improve areas of growth.
+              Recommandations sur mesure pour vous aider à exploiter vos atouts
+              et à améliorer vos axes de progression.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-pink-50 rounded-xl p-6 shadow-sm border border-pink-100">
                 <h3 className="font-semibold text-lg text-pink-900 mb-3">
-                  Strengths to Leverage
+                  Forces à exploiter
                 </h3>
                 <ul className="space-y-2">
                   {store?.personalizedAdvice?.strengthsToLeverage &&
-                    Array.isArray(store?.personalizedAdvice?.strengthsToLeverage) &&
-                    store?.personalizedAdvice?.strengthsToLeverage.map((strength: string, index: number) => (
-                      <li key={index} className="text-pink-800 flex items-center gap-2">
-                        <CircleCheck className="text-pink-500 text-sm" />
-                        <span className="text-sm">{strength}</span>
-                      </li>
-                    ))}
+                    Array.isArray(
+                      store?.personalizedAdvice?.strengthsToLeverage
+                    ) &&
+                    store?.personalizedAdvice?.strengthsToLeverage.map(
+                      (strength: string, index: number) => (
+                        <li
+                          key={index}
+                          className="text-pink-800 flex items-center gap-2"
+                        >
+                          <CircleCheck className="text-pink-500 text-sm" />
+                          <span className="text-sm">{strength}</span>
+                        </li>
+                      )
+                    )}
                 </ul>
               </div>
               <div className="bg-orange-50 rounded-xl p-6 shadow-sm border border-orange-100">
                 <h3 className="font-semibold text-lg text-orange-900 mb-3">
-                  Areas to Improve
+                  {"Axes d’amélioration"}
                 </h3>
                 <ul className="space-y-2">
                   {store?.personalizedAdvice?.areasToImprove &&
                     Array.isArray(store?.personalizedAdvice?.areasToImprove) &&
-                    store?.personalizedAdvice?.areasToImprove.map((area: string, index: number) => (
-                      <li key={index} className="text-orange-800 flex items-center gap-2">
-                        <CircleCheck className="text-orange-500 text-sm" />
-                        <span className="text-sm">{area}</span>
-                      </li>
-                    ))}
+                    store?.personalizedAdvice?.areasToImprove.map(
+                      (area: string, index: number) => (
+                        <li
+                          key={index}
+                          className="text-orange-800 flex items-center gap-2"
+                        >
+                          <CircleCheck className="text-orange-500 text-sm" />
+                          <span className="text-sm">{area}</span>
+                        </li>
+                      )
+                    )}
                 </ul>
               </div>
             </div>
-            
+
             {/* Career Path Options and Networking Advice */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
               <div className="bg-blue-50 rounded-xl p-6 shadow-sm border border-blue-100">
                 <h3 className="font-semibold text-lg text-blue-900 mb-3">
-                  Career Path Options
+                  Options de parcours professionnel
                 </h3>
                 <div className="space-y-2">
                   {store?.personalizedAdvice?.careerPathOptions &&
-                    Array.isArray(store?.personalizedAdvice?.careerPathOptions) &&
-                    store?.personalizedAdvice?.careerPathOptions.map((path: string, index: number) => (
-                      <div key={index} className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span className="text-blue-800 text-sm">{path}</span>
-                      </div>
-                    ))}
+                    Array.isArray(
+                      store?.personalizedAdvice?.careerPathOptions
+                    ) &&
+                    store?.personalizedAdvice?.careerPathOptions.map(
+                      (path: string, index: number) => (
+                        <div key={index} className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                          <span className="text-blue-800 text-sm">{path}</span>
+                        </div>
+                      )
+                    )}
                 </div>
               </div>
               <div className="bg-green-50 rounded-xl p-6 shadow-sm border border-green-100">
                 <h3 className="font-semibold text-lg text-green-900 mb-3">
-                  Networking Advice
+                  Conseils en réseautage
                 </h3>
                 <ul className="space-y-2">
                   {store?.personalizedAdvice?.networkingAdvice &&
-                    Array.isArray(store?.personalizedAdvice?.networkingAdvice) &&
-                    store?.personalizedAdvice?.networkingAdvice.map((advice: string, index: number) => (
-                      <li key={index} className="text-green-800 flex items-center gap-2">
-                        <CircleCheck className="text-green-500 text-sm" />
-                        <span className="text-sm">{advice}</span>
-                      </li>
-                    ))}
+                    Array.isArray(
+                      store?.personalizedAdvice?.networkingAdvice
+                    ) &&
+                    store?.personalizedAdvice?.networkingAdvice.map(
+                      (advice: string, index: number) => (
+                        <li
+                          key={index}
+                          className="text-green-800 flex items-center gap-2"
+                        >
+                          <CircleCheck className="text-green-500 text-sm" />
+                          <span className="text-sm">{advice}</span>
+                        </li>
+                      )
+                    )}
                 </ul>
               </div>
             </div>
@@ -756,10 +815,10 @@ function Career() {
                   <GraduationCap className="text-blue-600" />
                 </IconCircle>
                 <span className="font-semibold text-lg">
-                  What Your College Teaches
+                  Ce que votre université enseigne
                 </span>
               </div>
-              <span className="font-semibold text-sm">Strengths</span>
+              <span className="font-semibold text-sm">Forces</span>
               <ul className="text-base text-blue-900 list-disc ml-4 mb-2">
                 {store?.skillsGapAnalysis?.universityTeaching?.strengths &&
                   Array.isArray(
@@ -776,7 +835,7 @@ function Career() {
                     )
                   )}
               </ul>
-              <span className="font-semibold text-sm">Weaknesses</span>
+              <span className="font-semibold text-sm">Faiblesses</span>
               <ul className="text-base text-blue-900 list-disc ml-4 mb-2">
                 {store?.skillsGapAnalysis?.universityTeaching?.weaknesses &&
                   Array.isArray(
@@ -800,10 +859,10 @@ function Career() {
                   <BriefcaseBusiness className="text-green-600" />
                 </IconCircle>
                 <span className="font-semibold text-green-900 text-lg">
-                  What's Demanded in the Market
+                  Ce qui est demandé sur le marché
                 </span>
               </div>
-              <span className="font-semibold text-sm">Industry Demand</span>
+              <span className="font-semibold text-sm">Demande du secteur</span>
               <ul className="text-base text-blue-900 list-disc ml-4 mb-2">
                 {store?.skillsGapAnalysis?.industryDemand?.criticalSkills &&
                   Array.isArray(
@@ -820,7 +879,9 @@ function Career() {
                     )
                   )}
               </ul>
-              <span className="font-semibold text-sm">Emerging Skills</span>
+              <span className="font-semibold text-sm">
+                Compétences émergentes
+              </span>
               <ul className="text-base text-blue-900 list-disc ml-4 mb-2">
                 {store?.skillsGapAnalysis?.industryDemand?.emergingSkills &&
                   Array.isArray(
@@ -838,7 +899,7 @@ function Career() {
                   )}
               </ul>
               <span className="font-semibold text-sm">
-                IndustryReady Skills
+                {"Compétences prêtes pour l’industrie"}
               </span>
               <ul className="text-base text-blue-900 list-disc ml-4 mb-2">
                 {store?.skillsGapAnalysis?.industryDemand
@@ -864,7 +925,7 @@ function Career() {
           {/* Global Job Market */}
           <section className="mx-auto px-2 md:px-6 mt-16">
             <h3 className="font-bold text-2xl text-gray-900 mb-8">
-              What's Demanded in the Global Job Market
+              {"Ce qui est demandé sur le marché mondial de l’emploi"}
             </h3>
             <div className="flex flex-col gap-6">
               {/* Card 1 */}
@@ -905,7 +966,7 @@ function Career() {
           {/* Skills Comparison Table */}
           <section className="mx-auto px-2 md:px-6 mt-16">
             <h3 className="font-bold text-2xl text-gray-900 mb-6">
-              University Skills
+              Compétences universitaires
             </h3>
             <div className="flex flex-col gap-y-5">
               {store?.certificationsRecommended && (

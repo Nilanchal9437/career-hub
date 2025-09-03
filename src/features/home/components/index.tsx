@@ -67,7 +67,7 @@ export default function Home() {
           <Container>
             {/* Section Pourquoi choisir */}
             <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-gray-900">
-              Pourquoi choisir CareerHub ?
+              Pourquoi choisir SmartEdu ?
             </h2>
             <div className="flex flex-col md:flex-row gap-6 ">
               {/* Recommandations personnalisées */}
@@ -135,7 +135,7 @@ export default function Home() {
                 </div>
               </div>
               <p className="text-gray-600 text-sm mt-2">
-                « CareerHub m’a aidé à trouver à la fois un bootcamp de programmation et un emploi dans l’industrie tech en quelques mois. Les conseils de carrière ont été inestimables. »
+                « SmartEdu m’a aidé à trouver à la fois un bootcamp de programmation et un emploi dans l’industrie tech en quelques mois. Les conseils de carrière ont été inestimables. »
               </p>
             </div>
             {/* Témoignage 2 */}

@@ -20,7 +20,7 @@ function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-2">
               <Image height={30} width={30} src="/logo.png" alt="icône" />
-              <span className="font-bold text-lg text-white">CareerHub</span>
+              <span className="font-bold text-lg text-white">SmartEdu</span>
             </div>
             <p className="text-gray-400 text-sm mb-4">
               Votre plateforme complète pour le développement de carrière,
@@ -95,13 +95,13 @@ function Footer() {
                 <span className="text-green-400">
                   <Mail className="h-4 w-4" />
                 </span>
-                info@careerhub.com
+                info@smartedu.com
               </li>
             </ul>
           </div>
         </div>
         <div className="text-center text-gray-500 text-xs mt-8 pt-8 border-t border-gray-500">
-          © {new Date().getFullYear()} CareerHub. Tous droits réservés.
+          © {new Date().getFullYear()} SmartEdu. Tous droits réservés.
         </div>
       </Container>
     </footer>

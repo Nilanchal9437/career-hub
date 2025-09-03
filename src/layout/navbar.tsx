@@ -12,22 +12,22 @@ function NavBar() {
           {/* Placeholder for logo icon */}
           <Image height={30} width={30} src="/logo.png" alt="icon" />
           <span className="font-bold text-lg md:text-xl text-gray-800">
-            CareerHub
+            SmartEdu
           </span>
         </Link>
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-8 text-gray-700 font-medium">
           <Link href="/" className="hover:text-green-600 transition">
-            Home
+            Accueil
           </Link>
           <Link
             href="/career-guidance"
             className="hover:text-green-600 transition"
           >
-            Job
+            Emploi
           </Link>
           <Link href="/course" className="hover:text-green-600 transition">
-            Course
+            Cours
           </Link>
         </nav>
         <div className="hidden md:flex gap-2 items-center">
@@ -35,7 +35,7 @@ function NavBar() {
             href="/career-guidance"
             className="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-md text-sm transition"
           >
-            Career Guidance
+            Orientation professionnelle
           </Link>
         </div>
         {/* Mobile menu button */}
@@ -66,21 +66,21 @@ function NavBar() {
               className="w-full text-center py-2 hover:bg-gray-100"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Home
+              Accueil
             </Link>
             <Link
               href="/job"
               className="w-full text-center py-2 hover:bg-gray-100"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Job
+              Emploi
             </Link>
             <Link
               href="/course"
               className="w-full text-center py-2 hover:bg-gray-100"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Course
+              Cours
             </Link>
             <div className="flex flex-col gap-2 w-full px-4 mt-2">
               <Link
@@ -88,7 +88,7 @@ function NavBar() {
                 className="bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-md text-sm transition w-full text-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Career Guidance
+                Orientation professionnelle
               </Link>
             </div>
           </div>
