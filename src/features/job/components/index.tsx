@@ -136,7 +136,7 @@ export default function Jobs() {
   };
 
   return (
-    <Container className="mb-10">
+    <Container className="my-10">
       {/* Title Section */}
       {/* <section className="pt-8 md:pt-12">
         <div className="flex items-center gap-3 mb-2">

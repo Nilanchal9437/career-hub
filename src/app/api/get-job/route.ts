@@ -15,21 +15,22 @@ export async function GET(req: NextRequest) {
     const contentChange: any = req.cookies.get("contentChange");
     
     if (contentChange?.value === "true" || !datasetId?.value) {
-      const input = {
-        jobTitle: jobTitle,
-        location: location,
-        publishDuration: publication,
-        workplaceType: workPlace,
-        requirePublisherEmail: true,
-        includeCompanyDetails: true,
-      };
+      // const input = {
+      //   jobTitle: jobTitle,
+      //   location: location,
+      //   publishDuration: publication,
+      //   workplaceType: workPlace,
+      //   requirePublisherEmail: true,
+      //   includeCompanyDetails: true,
+      // };
 
-      const actor = await apifyClient
-        .actor(`${process.env.NEXT_PUBLIC_ACTOR_ID}`)
-        .call(input);
+      // const actor = await apifyClient
+      //   .actor(`${process.env.NEXT_PUBLIC_ACTOR_ID}`)
+      //   .call(input);
 
       const { items: res, total } = await apifyClient
-        .dataset(actor.defaultDatasetId)
+        // .dataset(actor.defaultDatasetId)
+        .dataset("0FnDsvHDD8MSewypy")
         .listItems({
           limit: parseInt(limit),
           offset: startingAfter,
@@ -78,7 +79,10 @@ export async function GET(req: NextRequest) {
           priority: "high",
         });
 
-        response.cookies.set("defaultDatasetId", `${actor.defaultDatasetId}`, {
+        response.cookies.set("defaultDatasetId", 
+          // `${actor.defaultDatasetId}`
+          "0FnDsvHDD8MSewypy", 
+          {
           path: "/",
           secure: true,
           sameSite: "lax",
