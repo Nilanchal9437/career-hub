@@ -296,7 +296,7 @@ export default function Jobs() {
                     className="bg-green-500 hover:bg-green-600 text-white font-semibold px-5 py-2 rounded-md text-sm flex items-center gap-2 transition w-full md:w-auto justify-center"
                     target="_blank"
                   >
-                    Apply Now{" "}
+                    Apply Now
                     <span className="text-base">
                       <ExternalLink />
                     </span>

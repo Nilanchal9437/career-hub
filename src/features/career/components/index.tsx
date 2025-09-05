@@ -181,9 +181,86 @@ function LearningRoadmapSkeleton() {
   );
 }
 
+const keyTranslations: Record<string, string> = {
+  universityName: "Nom de l’université",
+  courseName: "Nom du cours",
+  academicLevel: "Niveau académique",
+  programOverview: "Aperçu du programme",
+  description: "Description",
+  duration: "Durée",
+  mainFocus: "Axe principal",
+  technologyStack: "Pile technologique",
+  technologyName: "Nom de la technologie",
+  category: "Catégorie",
+  marketDemand: "Demande sur le marché",
+  learningPriority: "Priorité d’apprentissage",
+  moroccanMarketRelevance: "Pertinence pour le marché marocain",
+  learningRoadmap: "Feuille de route d’apprentissage",
+  foundationPhase: "Phase de base",
+  intermediatePhase: "Phase intermédiaire",
+  advancedPhase: "Phase avancée",
+  careerOpportunities: "Opportunités de carrière",
+  jobTitle: "Intitulé du poste",
+  jobDescription: "Description du poste",
+  requiredSkills: "Compétences requises",
+  salaryRange: "Échelle salariale",
+  entryLevel: "Débutant",
+  experienced: "Expérimenté",
+  senior: "Senior",
+  demandLevel: "Niveau de demande",
+  growthProspect: "Perspectives de croissance",
+  companiesHiring: "Entreprises qui recrutent",
+  skillsGapAnalysis: "Analyse des écarts de compétences",
+  strengths: "Forces",
+  weaknesses: "Faiblesses",
+  rating: "Évaluation",
+  industryDemand: "Demande du secteur",
+  criticalSkills: "Compétences critiques",
+  emergingSkills: "Compétences émergentes",
+  industryReadySkills: "Compétences prêtes pour l’industrie",
+  gapAnalysis: "Analyse des écarts",
+  technicalRoadmapSuggestions: "Suggestions de feuille de route technique",
+  softSkillsDevelopment: "Développement des compétences comportementales",
+  projectIdeas: "Idées de projets",
+  certificationsRecommended: "Certifications recommandées",
+  moroccanJobMarket: "Marché de l’emploi marocain",
+  overallDemand: "Demande globale",
+  trendAnalysis: "Analyse des tendances",
+  keyIndustries: "Secteurs clés",
+  averageSalaryRanges: "Fourchettes salariales moyennes",
+  freshGraduate: "Jeune diplômé",
+  midLevel: "Niveau intermédiaire",
+  topCompanies: "Entreprises principales",
+  locationHotspots: "Lieux stratégiques",
+  futureOutlook: "Perspectives futures",
+  nextStepsAction: "Prochaines étapes et actions",
+  industryInsights: "Aperçus du secteur",
+  currentTrends: "Tendances actuelles",
+  emergingTechnologies: "Technologies émergentes",
+  skillsInDemand: "Compétences demandées",
+  challengesFaced: "Défis rencontrés",
+  opportunitiesAvailable: "Opportunités disponibles",
+  personalizedAdvice: "Conseils personnalisés",
+  strengthsToLeverage: "Forces à exploiter",
+  areasToImprove: "Axes d’amélioration",
+  careerPathOptions: "Options de parcours professionnel",
+  differentiationStrategy: "Stratégie de différenciation",
+  networkingAdvice: "Conseils en réseautage",
+  metadata: "Métadonnées",
+  generatedAt: "Généré le",
+  dataSource: "Source des données",
+  lastUpdated: "Dernière mise à jour",
+  tokens: "Jetons",
+  source: "Source",
+  hasMatchingData: "Données correspondantes",
+  timestamp: "Horodatage",
+};
+
 // Helper → format camelCase → Normal text
-const formatName = (str: string) =>
-  str.replace(/([A-Z])/g, " $1").replace(/^./, (c) => c.toUpperCase());
+const formatName = (str: string) => {
+  return keyTranslations[str] || str.replace(/([A-Z])/g, " $1").replace(/^./, (c) => c.toUpperCase());
+};
+
 
 interface ColorTheme {
   border: string;
@@ -236,7 +313,7 @@ const GenerateCard: React.FC<GenerateCardProps> = ({
             <ul className="text-base text-gray-700 list-disc ml-4">
               {Object.entries(value).map(([subKey, subVal]) => (
                 <li key={subKey}>
-                  <strong>{formatName(subKey)}:</strong>{" "}
+                  <strong lang="fr">{formatName(subKey)}:</strong>{" "}
                   {typeof subVal === "object"
                     ? JSON.stringify(subVal)
                     : String(subVal)}
@@ -262,7 +339,7 @@ const GenerateCard: React.FC<GenerateCardProps> = ({
           className={`bg-white rounded-xl shadow-sm border-l-4 p-6 flex flex-col gap-2 border border-gray-100 ${color.border}`}
         >
           <div className="flex items-center gap-2 mb-2">
-            <span className={`font-semibold ${color.text} text-lg capitalize`}>
+            <span lang="fr" className={`font-semibold ${color.text} text-lg capitalize`}>
               {formatName(objName)}
             </span>
           </div>
@@ -336,7 +413,7 @@ function Career() {
                 Object.keys(store?.foundationSkills).map((semester: string) => (
                   <div key={semester} className="mb-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-3 capitalize">
-                      {semester.replace(/^semester/, "Semester ")}
+                      {semester.replace(/^semester/, "Semestre ")}
                     </h3>
                     <div className="space-y-3">
                       {Array.isArray(store?.foundationSkills[semester]) &&
@@ -377,7 +454,7 @@ function Career() {
                 Object.keys(store?.licenseSkills).map((semester: string) => (
                   <div key={semester} className="mb-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-3 capitalize">
-                      {semester.replace(/^semester/, "Semester ")}
+                      {semester.replace(/^semester/, "Semestre ")}
                     </h3>
                     <div className="space-y-3">
                       {Array.isArray(store?.licenseSkills[semester]) &&
@@ -422,7 +499,7 @@ function Career() {
                 Object.keys(store?.masterSkills).map((semester: string) => (
                   <div key={semester} className="mb-6">
                     <h3 className="text-lg font-semibold text-gray-900 mb-3 capitalize">
-                      {semester.replace(/^semester/, "Semester ")}
+                      {semester.replace(/^semester/, "Semestre ")}
                     </h3>
                     <div className="space-y-3">
                       {Array.isArray(store?.masterSkills[semester]) &&
@@ -646,7 +723,7 @@ function Career() {
                             : "bg-yellow-100 text-yellow-800"
                         }`}
                       >
-                        {tech?.marketDemand} Demand
+                        {tech?.marketDemand} Demande
                       </span>
                       <span
                         className={`px-2 py-1 rounded-full text-xs font-medium ${
@@ -655,7 +732,7 @@ function Career() {
                             : "bg-gray-100 text-gray-800"
                         }`}
                       >
-                        {tech?.learningPriority} Priority
+                        {tech?.learningPriority} Priorité
                       </span>
                     </div>
                     <div className="text-xs text-gray-600 bg-gray-50 p-2 rounded">
@@ -931,7 +1008,7 @@ function Career() {
               {/* Card 1 */}
               {store?.careerOpportunities && (
                 <GenerateCard
-                  objName="Career Opportunities"
+                  objName="Opportunités de carrière"
                   data={store?.careerOpportunities}
                   color={COLORS.green}
                 />
@@ -939,7 +1016,7 @@ function Career() {
               {/* Card 2 */}
               {store?.technicalRoadmapSuggestions && (
                 <GenerateCard
-                  objName="TechnicalRoadmap Suggestions"
+                  objName="Suggestions de feuille de route technique"
                   data={store?.technicalRoadmapSuggestions}
                   color={COLORS.pink}
                 />
@@ -947,7 +1024,7 @@ function Career() {
               {/* Card 3 */}
               {store?.softSkillsDevelopment && (
                 <GenerateCard
-                  objName="Soft Skills Development"
+                  objName="Développement des compétences comportementales"
                   data={store?.softSkillsDevelopment}
                   color={COLORS.purple}
                 />
@@ -955,7 +1032,7 @@ function Career() {
               {/* Card 4 */}
               {store?.projectIdeas && (
                 <GenerateCard
-                  objName="Project Ideas"
+                  objName="Idées de projets"
                   data={store?.projectIdeas}
                   color={COLORS.yellow}
                 />
@@ -971,28 +1048,28 @@ function Career() {
             <div className="flex flex-col gap-y-5">
               {store?.certificationsRecommended && (
                 <GenerateCard
-                  objName="Certifications Recommended"
+                  objName="Certifications recommandées"
                   data={store?.certificationsRecommended}
                   color={COLORS.yellow}
                 />
               )}
               {store?.technologyStack && (
                 <GenerateCard
-                  objName="Technology Stack"
+                  objName="Pile technologique"
                   data={store?.technologyStack}
                   color={COLORS.pink}
                 />
               )}
               {store?.industryInsights && (
                 <GenerateCard
-                  objName="Industry Insights"
+                  objName="Aperçus du secteur"
                   data={store?.industryInsights}
                   color={COLORS.green}
                 />
               )}
               {store?.programOverview && (
                 <GenerateCard
-                  objName="Program Overview"
+                  objName="Aperçu du programme"
                   data={store?.programOverview}
                   color={COLORS.purple}
                 />
