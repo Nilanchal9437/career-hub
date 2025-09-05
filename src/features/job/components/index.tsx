@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import CustomPagination from "@/components/Pagination";
 import Container from "@/components/Container";
-import { getCookie } from "@/libs/Cookie";
+// import { getCookie } from "@/libs/Cookie";
 import useJobPost from "@/features/job/apis/getJob";
 import {
   Calendar,
@@ -13,9 +13,9 @@ import {
   Building,
   Copy,
   ExternalLink,
-  Laptop,
+  // Laptop,
 } from "lucide-react";
-import debounce from "lodash/debounce";
+// import debounce from "lodash/debounce";
 
 function getRepeatIntervalCode(days: number) {
   const seconds = days * 24 * 60 * 60; // Convert days to seconds
@@ -92,40 +92,40 @@ export default function Jobs() {
     setLoad(false);
   };
 
-  React.useEffect(() => {
-    if (getCookie("jobTitle")) {
-      setJobTitle(decodeURIComponent(`${getCookie("jobTitle")}`));
-    }
-    if (getCookie("location")) {
-      setLocation(decodeURIComponent(`${getCookie("location")}`));
-    }
-    if (getCookie("publication")) {
-      setPublication(decodeURIComponent(`${getCookie("publication")}`));
-    }
-    if (getCookie("workPlace")) {
-      setWorkPlace(decodeURIComponent(`${getCookie("workPlace")}`));
-    }
-    getJobList();
-  }, []);
+  // React.useEffect(() => {
+  //   if (getCookie("jobTitle")) {
+  //     setJobTitle(decodeURIComponent(`${getCookie("jobTitle")}`));
+  //   }
+  //   if (getCookie("location")) {
+  //     setLocation(decodeURIComponent(`${getCookie("location")}`));
+  //   }
+  //   if (getCookie("publication")) {
+  //     setPublication(decodeURIComponent(`${getCookie("publication")}`));
+  //   }
+  //   if (getCookie("workPlace")) {
+  //     setWorkPlace(decodeURIComponent(`${getCookie("workPlace")}`));
+  //   }
+  //   getJobList();
+  // }, []);
 
   React.useEffect(() => {
     getJobList();
   }, [pagination]);
 
-  const debouncedSearch = debounce(() => {
-    const handleSetCookie = () => {
-      const key = "contentChange";
-      const value = "true";
-      const days = 1;
-      const expires = new Date();
-      expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
-      document.cookie = `${key}=${encodeURIComponent(
-        value
-      )}; expires=${expires.toUTCString()}; path=/`;
-    };
-    handleSetCookie();
-    getJobList();
-  }, 3000);
+  // const debouncedSearch = debounce(() => {
+  //   const handleSetCookie = () => {
+  //     const key = "contentChange";
+  //     const value = "true";
+  //     const days = 1;
+  //     const expires = new Date();
+  //     expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+  //     document.cookie = `${key}=${encodeURIComponent(
+  //       value
+  //     )}; expires=${expires.toUTCString()}; path=/`;
+  //   };
+  //   handleSetCookie();
+  //   getJobList();
+  // }, 3000);
 
   const handleCopy = async (textToCopy: string) => {
     try {

@@ -5,32 +5,33 @@ export async function GET(req: NextRequest) {
   try {
     const limit: any = req.nextUrl.searchParams.get("limit");
     const pageNo: any = req.nextUrl.searchParams.get("pageNo");
-    const jobTitle: any = req.nextUrl.searchParams.get("jobTitle");
-    const location: any = req.nextUrl.searchParams.get("location");
-    const publication: any = req.nextUrl.searchParams.get("publication");
-    const workPlace: any = req.nextUrl.searchParams.get("workPlace");
     const startingAfter: number = (parseInt(pageNo) - 1) * parseInt(limit);
 
     const datasetId: any = req.cookies.get("defaultDatasetId");
-    const contentChange: any = req.cookies.get("contentChange");
-    
-    if (contentChange?.value === "true" || !datasetId?.value) {
-      // const input = {
-      //   jobTitle: jobTitle,
-      //   location: location,
-      //   publishDuration: publication,
-      //   workplaceType: workPlace,
-      //   requirePublisherEmail: true,
-      //   includeCompanyDetails: true,
-      // };
+    const lastFetchTime: any = req.cookies.get("lastFetchTime");
+    const now = Date.now();
+    const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
 
-      // const actor = await apifyClient
-      //   .actor(`${process.env.NEXT_PUBLIC_ACTOR_ID}`)
-      //   .call(input);
+    if (
+      !lastFetchTime ||
+      now - Number(lastFetchTime) > TWENTY_FOUR_HOURS ||
+      !datasetId?.value
+    ) {
+      const input = {
+        jobTitle: "Software Developer",
+        location: "All location",
+        publishDuration: "r2592000",
+        workplaceType: "all",
+        requirePublisherEmail: true,
+        includeCompanyDetails: true,
+      };
+
+      const actor = await apifyClient
+        .actor(`${process.env.NEXT_PUBLIC_ACTOR_ID}`)
+        .call(input);
 
       const { items: res, total } = await apifyClient
-        // .dataset(actor.defaultDatasetId)
-        .dataset("0FnDsvHDD8MSewypy")
+        .dataset(actor.defaultDatasetId)
         .listItems({
           limit: parseInt(limit),
           offset: startingAfter,
@@ -47,7 +48,7 @@ export async function GET(req: NextRequest) {
           { status: 200 }
         );
 
-        response.cookies.set("jobTitle", `${jobTitle}`, {
+        response.cookies.set("defaultDatasetId", `${actor.defaultDatasetId}`, {
           path: "/",
           secure: true,
           sameSite: "lax",
@@ -55,42 +56,7 @@ export async function GET(req: NextRequest) {
           priority: "high",
         });
 
-        response.cookies.set("location", `${location}`, {
-          path: "/",
-          secure: true,
-          sameSite: "lax",
-          maxAge: 24 * 60 * 60,
-          priority: "high",
-        });
-
-        response.cookies.set("publication", `${publication}`, {
-          path: "/",
-          secure: true,
-          sameSite: "lax",
-          maxAge: 24 * 60 * 60,
-          priority: "high",
-        });
-
-        response.cookies.set("workPlace", `${workPlace}`, {
-          path: "/",
-          secure: true,
-          sameSite: "lax",
-          maxAge: 24 * 60 * 60,
-          priority: "high",
-        });
-
-        response.cookies.set("defaultDatasetId", 
-          // `${actor.defaultDatasetId}`
-          "0FnDsvHDD8MSewypy", 
-          {
-          path: "/",
-          secure: true,
-          sameSite: "lax",
-          maxAge: 24 * 60 * 60,
-          priority: "high",
-        });
-
-        response.cookies.set("contentChange", `${false}`, {
+        response.cookies.set("lastFetchTime", `${now.toString()}`, {
           path: "/",
           secure: true,
           sameSite: "lax",
@@ -143,13 +109,14 @@ export async function GET(req: NextRequest) {
       }
     }
   } catch (err: any) {
-    console.error("Error in getting Chat :::", err?.message);
+    console.error("Error in getting job post :::", err?.message);
     return NextResponse.json(
       {
         status: false,
         message: "something went wrong getting job post",
         data: [],
         total: 0,
+        err: err
       },
       { status: 500 }
     );
