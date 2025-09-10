@@ -8,15 +8,8 @@ export async function GET(req: NextRequest) {
     const startingAfter: number = (parseInt(pageNo) - 1) * parseInt(limit);
 
     const datasetId: any = req.cookies.get("defaultDatasetId");
-    const lastFetchTime: any = req.cookies.get("lastFetchTime");
-    const now = Date.now();
-    const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
 
-    if (
-      !lastFetchTime ||
-      now - Number(lastFetchTime) > TWENTY_FOUR_HOURS ||
-      !datasetId?.value
-    ) {
+    if (!datasetId?.value) {
       const input = {
         jobTitle: "Software Developer",
         location: "All location",
@@ -49,14 +42,6 @@ export async function GET(req: NextRequest) {
         );
 
         response.cookies.set("defaultDatasetId", `${actor.defaultDatasetId}`, {
-          path: "/",
-          secure: true,
-          sameSite: "lax",
-          maxAge: 24 * 60 * 60,
-          priority: "high",
-        });
-
-        response.cookies.set("lastFetchTime", `${now.toString()}`, {
           path: "/",
           secure: true,
           sameSite: "lax",
@@ -116,7 +101,7 @@ export async function GET(req: NextRequest) {
         message: "something went wrong getting job post",
         data: [],
         total: 0,
-        err: err
+        err: err,
       },
       { status: 500 }
     );
