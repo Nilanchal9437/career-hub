@@ -13,7 +13,8 @@ import {
   Building,
   Copy,
   ExternalLink,
-  // Laptop,
+  UserRound,
+  HandCoins,
 } from "lucide-react";
 // import debounce from "lodash/debounce";
 
@@ -23,18 +24,18 @@ function getRepeatIntervalCode(days: number) {
 }
 interface JobPost {
   title: string;
-  company: string;
+  companyName: string;
   location: string;
   workplaceType: string | null;
-  postDate: string; // ISO date format e.g. "2025-07-02"
+  publishedAt: string; // ISO date format e.g. "2025-07-02"
   salary: string | null;
   jobType: string | null;
   jobLink: string;
-  companyLink: string;
-  description: string;
+  companyUrl: string;
+  applicationsCount: string;
   experienceLevel: string;
-  employmentType: string;
-  industry: string;
+  contractType: string;
+  sector: string;
   publisher: {
     name: string | null;
     email: string | null;
@@ -44,6 +45,8 @@ interface JobPost {
     industry: string | null;
     website: string | null;
   };
+  description: string;
+  postedTime: string;
 }
 
 export default function Jobs() {
@@ -245,11 +248,14 @@ export default function Jobs() {
                 className="bg-white rounded-xl border border-gray-100 shadow-sm p-5 flex flex-col gap-2 relative"
               >
                 {/* Top right icons */}
-                <div className="absolute top-4 right-4">
+                <div className="absolute top-4 right-4 flex flex-row gap-x-2 items-center">
+                  <h2 className="font-bold text-sm text-gray-400">
+                    {job.postedTime}
+                  </h2>
                   <button
                     className="text-gray-400 hover:text-green-600 p-1"
                     title="Share"
-                    onClick={() => handleCopy(job.companyLink)}
+                    onClick={() => handleCopy(job.companyUrl)}
                   >
                     <Copy />
                   </button>
@@ -263,7 +269,7 @@ export default function Jobs() {
                       <span className="text-gray-400">
                         <Building />
                       </span>
-                      {job.company}
+                      {job.companyName}
                     </span>
                     <span className="flex items-center gap-1">
                       <span className="text-gray-400">
@@ -275,24 +281,36 @@ export default function Jobs() {
                       <span className="text-gray-400">
                         <Calendar />
                       </span>
-                      Posted on {job.postDate}
+                      Posted on {job.publishedAt}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span className="text-gray-400">
+                        <UserRound />
+                      </span>
+                      Applications Count {job.applicationsCount}
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span className="text-gray-400">
+                        <HandCoins />
+                      </span>
+                      Salary {job.salary}
                     </span>
                   </div>
                   <div className="flex flex-wrap flex-row gap-3 mt-6">
                     <div className="text-sm bg-blue-100 text-blue-600 p-2 rounded-lg">
-                      {job.employmentType}
+                      {job.contractType}
                     </div>
                     <div className="bg-yellow-100 text-yellow-600 p-2 rounded-lg text-sm">
                       {job.experienceLevel}
                     </div>
                     <div className="bg-green-100 text-green-600 p-2 rounded-lg text-sm">
-                      {job.industry}
+                      {job.sector}
                     </div>
                   </div>
                 </div>
                 <div className="flex flex-row justify-end mt-2 md:mt-0 md:ml-4 w-full md:w-auto">
                   <Link
-                    href={job.companyLink}
+                    href={job.companyUrl}
                     className="bg-green-500 hover:bg-green-600 text-white font-semibold px-5 py-2 rounded-md text-sm flex items-center gap-2 transition w-full md:w-auto justify-center"
                     target="_blank"
                   >

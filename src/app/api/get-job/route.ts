@@ -11,12 +11,13 @@ export async function GET(req: NextRequest) {
 
     if (!datasetId?.value) {
       const input = {
-        jobTitle: "Software Developer",
-        location: "All location",
-        publishDuration: "r2592000",
-        workplaceType: "all",
-        requirePublisherEmail: true,
-        includeCompanyDetails: true,
+        title: "Software Developer", 
+        publishedAt: "",
+        workplaceType: "all", 
+        proxy: {
+          useApifyProxy: true,
+          apifyProxyGroups: ["RESIDENTIAL"],
+        },
       };
 
       const actor = await apifyClient
