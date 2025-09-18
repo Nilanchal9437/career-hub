@@ -11,9 +11,9 @@ export async function GET(req: NextRequest) {
 
     if (!datasetId?.value) {
       const input = {
-        title: "Software Developer", 
+        title: "Software developer, Data Science, AI, DevOps, Cybersecurity",
         publishedAt: "",
-        workplaceType: "all", 
+        workplaceType: "all",
         proxy: {
           useApifyProxy: true,
           apifyProxyGroups: ["RESIDENTIAL"],

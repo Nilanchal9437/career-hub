@@ -4,10 +4,6 @@ import { useApi } from "@/hook/useApi";
 interface payloadType {
   limit: number;
   pageNo: number;
-  jobTitle: string;
-  location: string;
-  publication: string;
-  workPlace: string;
 }
 
 const useJobPost = () => {
