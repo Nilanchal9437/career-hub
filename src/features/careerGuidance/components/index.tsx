@@ -72,21 +72,6 @@ function CareerGuidance() {
       .find((u) => String(u.id) === selectedUniversity)
       ?.courses.map((c) => ({ value: c.id, label: c.name })) || [];
 
-  const onSearch = () => {
-    const expires = new Date();
-    expires.setTime(expires.getTime() + 2 * 24 * 60 * 60 * 1000);
-
-    document.cookie = `contentChange=${encodeURIComponent(
-      "true"
-    )}; expires=${expires.toUTCString()}; path=/`;
-
-    document.cookie = `jobTitle=${encodeURIComponent(
-      courseOptions[parseInt(selectedCourse) - 1]?.label
-    )}; expires=${expires.toUTCString()}; path=/`;
-
-    router.push("/job");
-  };
-
   const onCareer = () => {
     const expires = new Date();
     expires.setTime(expires.getTime() + 2 * 24 * 60 * 60 * 1000);
@@ -108,10 +93,14 @@ function CareerGuidance() {
       <div className="w-full max-w-3xl mx-auto text-center mt-10 md:mt-16 px-4">
         <h1 className="font-extrabold text-2xl md:text-4xl text-gray-900 mb-3 flex items-center justify-center">
           <GraduationCap className="h-20 w-20" />
-          <span>Améliorez vos compétences & recevez une orientation de carrière</span>
+          <span>
+            Améliorez vos compétences & recevez une orientation de carrière
+          </span>
         </h1>
         <p className="text-gray-500 text-base md:text-lg mb-8">
-          Choisissez votre parcours et découvrez les compétences essentielles, les métiers et les conseils d’experts pour évoluer rapidement — sans connexion requise.
+          Choisissez votre parcours et découvrez les compétences essentielles,
+          les métiers et les conseils d’experts pour évoluer rapidement — sans
+          connexion requise.
         </p>
       </div>
 
@@ -159,7 +148,9 @@ function CareerGuidance() {
               </option>
             ))}
           </select>
-          <div className="text-gray-400 text-sm ml-1">Sélectionnez le cours</div>
+          <div className="text-gray-400 text-sm ml-1">
+            Sélectionnez le cours
+          </div>
         </div>
       </div>
 
@@ -169,7 +160,7 @@ function CareerGuidance() {
           className="bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-3 rounded-md text-base flex items-center gap-2 transition shadow"
           disabled={!selectedUniversity || !selectedCourse}
           onClick={() => {
-            onSearch();
+            router.push("/job");
           }}
         >
           <GraduationCap />
