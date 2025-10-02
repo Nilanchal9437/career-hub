@@ -38,11 +38,11 @@ Return ONLY a valid JSON object (no markdown, no explanations, no text outside J
   },
   "foundationSkills": {
     "semester1": [],
-    "semester2": []
-  },
-  "licenseSkills": {
+    "semester2": [],
     "semester3": [],
     "semester4": [],
+  },
+  "licenseSkills": {
     "semester5": [],
     "semester6": []
   },
